@@ -705,6 +705,17 @@ body{position:relative}
   @keyframes spin{to{transform:rotate(360deg)}}
   @keyframes sweep{0%,72%{transform:translateY(0);opacity:0}76%{opacity:.9}100%{transform:translateY(124vh);opacity:0}}
 }
+
+/* phones: single-column project cards (must stay last) */
+@media (max-width:720px){
+  .work{grid-template-columns:1fr}
+  .work .proj{display:flex;flex-direction:column;gap:12px;padding:22px}
+  .work .proj > .plate{position:static;order:-1;width:auto;margin:-22px -22px 6px;max-width:none}
+  .work .proj .plate .frame{width:100%;height:auto;aspect-ratio:16/9;min-height:0;border-radius:0;padding:12px}
+  .work .proj .plate canvas{width:165px !important;height:165px !important;max-width:none}
+  .work .proj .plate .frame svg{width:auto;height:150px;max-width:80%}
+  .work .w-ich > .txt,.work .w-ti > .txt{display:flex;flex-direction:column;gap:12px}
+}
 </style>
 </head>
 <body>
