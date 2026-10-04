@@ -1,0 +1,1602 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Syed Mohammad Hasan | Radiology & Clinical AI</title>
+<meta name="description" content="Syed Mohammad Hasan, MBBS. Diagnostic radiology resident at Aga Khan University Hospital working on clinical AI validation, imaging data quality and quality improvement.">
+<meta name="author" content="Syed Mohammad Hasan">
+<meta name="theme-color" content="#F3F7FA">
+<script>
+(function(){
+  var t = null;
+  try { t = localStorage.getItem('lightbox-theme'); } catch (e) {}
+  if (t !== 'dark' && t !== 'light') {
+    t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  document.documentElement.setAttribute('data-theme', t);
+  if (t === 'dark') { var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', '#0b0f13'); }
+})();
+(function(){
+  /* first-visit loader: only when motion is allowed and not yet shown this session */
+  var d = document.documentElement, seen = true;
+  try { if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch (e) { return; }
+  try { seen = sessionStorage.getItem('lightbox-boot') === '1'; if (!seen) sessionStorage.setItem('lightbox-boot', '1'); } catch (e) { seen = true; }
+  if (seen) return;
+  d.classList.add('boot-on');
+  setTimeout(function(){ d.classList.remove('boot-on'); d.classList.add('boot-done'); }, 1400); /* failsafe */
+})();
+</script>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>
+:root{
+  color-scheme: light;
+  /* lightbox */
+  --box:#F3F7FA;
+  --glow:#D6E6F3;
+  --seam:rgba(60,90,120,.07);
+  /* film tints */
+  --film-0:#E8EEF3;
+  --film-1:#DFE7EE;
+  --film-2:#B9C8D6;
+  --film-3:#22303C;
+  --film-x:#0E151C; /* viewer black */
+  --ink:#142029;
+  --ink-2:#3C4A57;
+  --ink-mid:#2A3743;
+  --on-dense:#E6EDF3;
+  --on-dense-2:#A9B8C6;
+  --accent:#F5C518;
+  --accent-2:#FFD84A;
+  --line:rgba(20,32,41,.14);
+  --film-edge:rgba(20,32,41,.16);
+  /* legacy names used by inline styles, remapped to film tints */
+  --indigo:var(--film-3);--cream:var(--on-dense);--tomato:var(--film-2);--butter:var(--film-1);
+  --lilac:var(--film-1);--mint:var(--film-0);--sky:var(--film-2);
+  --r-xl:6px;
+  --r-lg:5px;
+  --r-md:4px;
+  --gap:14px;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono:"Martian Mono", ui-monospace, Consolas, monospace;
+  --shadow:inset 0 0 0 1px var(--film-edge), 0 1px 2px rgba(20,32,41,.08), 0 12px 24px -14px rgba(20,32,41,.30);
+  --shadow-up:inset 0 0 0 1px var(--film-edge), 0 2px 4px rgba(20,32,41,.08), 0 22px 38px -20px rgba(20,32,41,.38);
+  /* theme tokens */
+  --on-accent:#142029;
+  --glow-2:rgba(214,230,243,.6);
+  --nav-bg:rgba(243,247,250,.92);
+  --tint:rgba(20,32,41,.08);
+  --chip-hi:rgba(255,255,255,.5);
+  --backlight:rgba(255,255,255,.22);
+  --hl:rgba(245,197,24,.65);
+  --bar-hi:var(--film-3);
+  --bar-lo:var(--film-2);
+  --h1-sub:#B9C8D6;
+  --clip-dim:1;
+}
+/* lights off: dark reading room */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --box:#0b0f13;--glow:#121a22;--glow-2:rgba(30,44,58,.35);--seam:rgba(230,237,243,.035);
+  --film-0:#1a232c;--film-1:#1e2832;--film-2:#222d38;--film-3:#11181f;--film-x:#070b0f;
+  --ink:#E6EDF3;--ink-2:#A9B8C6;--ink-mid:#C4D0DB;
+  --line:rgba(230,237,243,.12);--film-edge:rgba(230,237,243,.09);
+  --nav-bg:rgba(11,15,19,.96);--tint:rgba(230,237,243,.07);--chip-hi:rgba(230,237,243,.06);
+  --backlight:rgba(255,255,255,.05);--hl:rgba(245,197,24,.38);--bar-hi:#8FA3B6;--bar-lo:#3A4A5A;--clip-dim:.5;
+  --shadow:inset 0 0 0 1px var(--film-edge), 0 1px 2px rgba(0,0,0,.4), 0 12px 24px -14px rgba(0,0,0,.7);
+  --shadow-up:inset 0 0 0 1px var(--film-edge), 0 2px 4px rgba(0,0,0,.4), 0 22px 38px -20px rgba(0,0,0,.8);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --box:#0b0f13;--glow:#121a22;--glow-2:rgba(30,44,58,.35);--seam:rgba(230,237,243,.035);
+    --film-0:#1a232c;--film-1:#1e2832;--film-2:#222d38;--film-3:#11181f;--film-x:#070b0f;
+    --ink:#E6EDF3;--ink-2:#A9B8C6;--ink-mid:#C4D0DB;
+    --line:rgba(230,237,243,.12);--film-edge:rgba(230,237,243,.09);
+    --nav-bg:rgba(11,15,19,.96);--tint:rgba(230,237,243,.07);--chip-hi:rgba(230,237,243,.06);
+    --backlight:rgba(255,255,255,.05);--hl:rgba(245,197,24,.38);--bar-hi:#8FA3B6;--bar-lo:#3A4A5A;--clip-dim:.5;
+    --shadow:inset 0 0 0 1px var(--film-edge), 0 1px 2px rgba(0,0,0,.4), 0 12px 24px -14px rgba(0,0,0,.7);
+    --shadow-up:inset 0 0 0 1px var(--film-edge), 0 2px 4px rgba(0,0,0,.4), 0 22px 38px -20px rgba(0,0,0,.8);
+  }
+}
+html.theming, html.theming *, html.theming *::before, html.theming *::after{
+  transition:background-color .25s ease, color .25s ease, border-color .25s ease, fill .25s ease, stroke .25s ease, box-shadow .25s ease, filter .25s ease !important;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background-color:var(--box);color:var(--ink);
+  font-family:var(--body);font-size:17px;line-height:1.55;
+  background-image:
+    radial-gradient(ellipse 70% 55% at 50% 0%, var(--glow), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, var(--glow-2), transparent 70%),
+    repeating-linear-gradient(90deg, transparent 0 479px, var(--seam) 479px 480px),
+    repeating-linear-gradient(0deg, transparent 0 639px, var(--seam) 639px 640px);
+  background-attachment:fixed, fixed, scroll, scroll;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em;line-height:1.05}
+p{margin:0}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px var(--accent);border-radius:4px}
+.skip{position:absolute;left:16px;top:-60px;background:var(--accent);color:var(--on-accent);padding:10px 16px;border-radius:4px;z-index:50;text-decoration:none;font-weight:600}
+.skip:focus{top:12px}
+.wrap{max-width:1360px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:20;background:var(--nav-bg);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav.scrolled{border-bottom-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.01em}
+.mark i{display:grid;place-items:center;width:34px;height:34px;border-radius:4px;background:var(--film-3);color:var(--on-dense);font-style:normal;font-size:13px;font-weight:700;letter-spacing:.02em;box-shadow:inset 0 -3px 0 var(--accent)}
+.nav nav{margin-left:auto;min-width:0}
+/* hanging protocol: sections as a PACS series strip */
+.series-strip{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+.series-strip li{flex:none;scroll-snap-align:start}
+.series{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;min-width:104px;padding:10px 14px;border-radius:3px;text-decoration:none;color:var(--ink);background:var(--film-0);box-shadow:inset 0 0 0 1px var(--film-edge);position:relative}
+.series .se{font-family:var(--mono);font-size:11px;line-height:1;letter-spacing:.06em;color:var(--ink-2)}
+.series .lb{font-size:13.5px;font-weight:600;line-height:1.15;white-space:nowrap}
+.series:hover{background:var(--tint)}
+.series[aria-current="true"]::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:#F5C518;border-radius:3px 3px 0 0}
+.lights{flex:none;display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:4px;cursor:pointer;color:var(--ink);background:var(--tint);box-shadow:inset 0 0 0 1px var(--line)}
+.lights:hover{background:var(--accent);color:var(--on-accent)}
+.lights svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.lights .i-off{display:none}
+[data-theme="dark"] .lights .i-on{display:none}
+[data-theme="dark"] .lights .i-off{display:block}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:4px;font-weight:600;font-size:16px;text-decoration:none;line-height:1.1;transition:transform .2s cubic-bezier(.2,.8,.2,1), background-color .2s, box-shadow .2s;white-space:nowrap}
+.btn svg{width:18px;height:18px;flex:none;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.btn:hover svg{transform:translateX(3px)}
+.btn:active{transform:scale(.97)}
+.btn-ink,.btn-coral{background:var(--accent);color:var(--on-accent);box-shadow:inset 0 0 0 1px rgba(20,32,41,.18)}
+.btn-ink:hover,.btn-coral:hover{background:var(--accent-2);box-shadow:inset 0 0 0 1px rgba(20,32,41,.3), 0 8px 18px -10px rgba(20,32,41,.45)}
+.btn-small{padding:10px 16px;font-size:15px}
+
+/* ---------- bento ---------- */
+.hero{padding-top:10px}
+.bento{
+  display:grid;gap:var(--gap);
+  grid-template-columns:repeat(6, minmax(0,1fr));
+  grid-template-rows:minmax(0,1fr) minmax(0,1fr) minmax(0,.86fr);
+  height:clamp(660px, calc(100vh - 92px), 860px);
+  grid-template-areas:
+    "intro intro intro photo scan scan"
+    "intro intro intro now   scan scan"
+    "stat  stat  pubs  awards awards links";
+}
+.tile{
+  position:relative;border-radius:var(--r-xl);padding:26px;padding-top:30px;overflow:hidden;
+  box-shadow:var(--shadow);isolation:isolate;background:var(--film-1);
+  transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));
+  transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .3s;
+  display:flex;flex-direction:column;min-width:0;
+}
+/* reveal: movement only, content is always visible even if the animation never runs */
+@media (prefers-reduced-motion: no-preference){
+  .tile{animation:rise .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 70ms)}
+}
+@keyframes rise{from{translate:0 14px}to{translate:0 0}}
+/* film clip at the top edge */
+.bento .tile::before{
+  content:"";position:absolute;top:0;left:50%;width:58px;height:14px;translate:-50% 0;z-index:3;pointer-events:none;
+  border-radius:0 0 4px 4px;
+  background:
+    linear-gradient(transparent 6px, rgba(20,32,41,.38) 6px 7px, rgba(255,255,255,.6) 7px 8px, transparent 8px),
+    linear-gradient(90deg, rgba(20,32,41,.18), transparent 18% 82%, rgba(20,32,41,.18)),
+    linear-gradient(#FBFCFD, #C3CDD6 55%, #8996A2);
+  box-shadow:0 2px 3px rgba(20,32,41,.28), inset 0 0 0 1px rgba(20,32,41,.18);
+  filter:brightness(var(--clip-dim));
+}
+.tile::after{ /* backlight that follows the pointer */
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%), var(--backlight), transparent 60%);
+}
+.tile.live:hover::after{opacity:1}
+.tile.live:hover{--ty:-3px;box-shadow:var(--shadow-up)}
+.tile a.cover{position:absolute;inset:0;z-index:2;border-radius:inherit}
+.tile .tag{display:inline-flex;align-items:center;gap:8px;align-self:flex-start}
+.corner{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:4px;display:grid;place-items:center;background:var(--tint);transition:transform .35s cubic-bezier(.2,.8,.2,1), background-color .3s}
+.corner svg{width:16px;height:16px;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.tile.live:hover .corner{background:var(--accent);color:var(--on-accent)}
+.tile.live:hover .corner svg{transform:translate(2px,-2px)}
+
+.t-intro{grid-area:intro;background:var(--film-3);color:var(--on-dense);padding:38px 38px 36px;justify-content:space-between}
+.t-intro .tag{color:var(--on-dense-2)}
+.t-intro .dot{width:8px;height:8px;border-radius:1px;background:var(--accent)}
+.t-intro h1{font-size:clamp(46px, 4.9vw, 78px);font-weight:700;letter-spacing:-.035em;line-height:.95;margin-top:auto;font-variation-settings:"opsz" 96}
+.t-intro h1 span{display:block;color:var(--h1-sub)}
+.t-intro .lede{font-size:clamp(17px,1.35vw,20px);line-height:1.45;max-width:34em;margin-top:18px;color:var(--on-dense)}
+.t-intro .role{font-size:14.5px;color:var(--on-dense-2);margin-top:10px}
+.t-intro .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;align-items:center}
+.btn-ghost{color:var(--on-dense);box-shadow:inset 0 0 0 1.5px rgba(230,237,243,.4)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--on-dense)}
+.t-intro .orbit{position:absolute;right:-120px;top:-120px;width:380px;height:380px;z-index:-1;opacity:.35;pointer-events:none}
+
+.t-photo{grid-area:photo;background:var(--film-1);align-items:center;justify-content:center;padding:18px;padding-top:24px}
+.t-photo .ring{position:relative;width:min(100%, 172px);aspect-ratio:1;border-radius:50%;padding:6px;background:conic-gradient(from 210deg, var(--film-3) 0 25%, transparent 25% 100%);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.tile.live.t-photo:hover .ring{transform:rotate(18deg)}
+.tile.live.t-photo:hover .ring img{transform:rotate(-18deg)}
+.t-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:4px solid var(--film-1);transition:transform .7s cubic-bezier(.2,.8,.2,1);max-width:200px;max-height:200px;filter:saturate(.85)}
+.t-photo .cap{margin-top:12px;text-align:center;font-size:13.5px;font-weight:600;line-height:1.3;color:var(--ink)}
+.t-photo .cap span{display:block;font-weight:500;color:var(--ink-2)}
+
+.t-now{grid-area:now;background:var(--film-2)}
+.t-now .tag{color:var(--ink-mid);padding-right:46px}
+.pulse{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px rgba(20,32,41,.35), 0 0 0 0 rgba(245,197,24,.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 1px rgba(20,32,41,.35),0 0 0 0 rgba(245,197,24,.6)}70%{box-shadow:0 0 0 1px rgba(20,32,41,.35),0 0 0 9px rgba(245,197,24,0)}100%{box-shadow:0 0 0 1px rgba(20,32,41,.35),0 0 0 0 rgba(245,197,24,0)}}
+.t-now h2{font-size:clamp(19px,1.55vw,23px);font-weight:650;margin-top:auto;line-height:1.12;letter-spacing:-.015em}
+.t-now p{font-size:14px;color:var(--ink-mid);margin-top:8px;line-height:1.4}
+
+.t-scan{grid-area:scan;background:var(--film-x);color:var(--on-dense);padding:22px;padding-top:28px}
+.scan-head{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--on-dense-2)}
+.viewer{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;margin:12px 0;cursor:crosshair;touch-action:none;border-radius:4px;outline-offset:4px}
+.frame{position:relative;height:100%;max-height:100%;aspect-ratio:1;max-width:100%;font-family:var(--mono);text-transform:uppercase;letter-spacing:.04em}
+.frame canvas,.viewer canvas{width:100%;height:100%;display:block;border-radius:3px;background:#000;image-rendering:auto}
+.xh{position:absolute;inset:0;pointer-events:none}
+.xh::before,.xh::after{content:"";position:absolute}
+/* gapped crosshair: ticks stop well short of the brain centre */
+.xh::before{left:50%;top:5%;bottom:5%;width:1px;background:linear-gradient(rgba(185,200,214,.32) 0 18%, transparent 18% 82%, rgba(185,200,214,.32) 82%)}
+.xh::after{top:50%;left:5%;right:5%;height:1px;background:linear-gradient(90deg, rgba(185,200,214,.32) 0 18%, transparent 18% 82%, rgba(185,200,214,.32) 82%)}
+.ov{position:absolute;font-size:11px;line-height:1.2;color:var(--on-dense);background:rgba(0,0,0,.6);padding:2px 5px;border-radius:2px;white-space:nowrap;pointer-events:none}
+.ov-ai{white-space:pre;text-align:right}
+.ov-tl{top:6px;left:6px}.ov-tr{top:6px;right:6px}.ov-bl{bottom:6px;left:6px}.ov-br{bottom:6px;right:6px}
+.ov-tl::before{content:"";display:inline-block;width:5px;height:5px;background:var(--accent);margin-right:5px;vertical-align:1px}
+.or{position:absolute;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--accent);background:rgba(0,0,0,.55);padding:1px 4px;border-radius:2px;pointer-events:none}
+.or-a{top:24px;left:50%;translate:-50% 0}.or-p{bottom:3px;left:50%;translate:-50% 0}.or-r{left:3px;top:50%;translate:0 -50%}.or-l{right:3px;top:50%;translate:0 -50%}
+.sbar{position:absolute;right:8px;bottom:28px;width:26%;display:flex;flex-direction:column-reverse;align-items:flex-end;gap:2px;font-size:11px;color:var(--on-dense);pointer-events:none}
+.sbar i{display:block;width:100%;height:6px;border:1px solid var(--on-dense);border-top:0;box-shadow:0 1px 0 rgba(0,0,0,.6)}
+.sbar span{background:rgba(0,0,0,.6);padding:1px 4px;border-radius:2px}
+.scan-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.ctl-row{display:flex;justify-content:space-between;align-items:flex-end;gap:8px}
+.frame .scout{position:absolute;top:26px;left:6px;width:70px;height:70px;display:block;pointer-events:none;border-radius:3px;background:#000;outline:1px solid rgba(230,237,243,.3)}
+.playbtn{width:32px;height:32px;display:grid;place-items:center;border:0;border-radius:3px;background:rgba(255,255,255,.08);color:var(--on-dense);cursor:pointer;box-shadow:inset 0 0 0 1px rgba(230,237,243,.14)}
+.playbtn:hover{background:rgba(255,255,255,.16)}
+.playbtn svg{width:14px;height:14px;fill:currentColor}
+.playbtn .i-play{display:none}.playbtn[data-paused="true"] .i-play{display:block}.playbtn[data-paused="true"] .i-pause{display:none}
+.lut{position:absolute;left:6px;bottom:28px;display:flex;gap:4px;align-items:stretch;height:64px;font-size:11px;pointer-events:none}
+.lut[hidden]{display:none}
+.lut i{display:block;width:7px;border-radius:1px;background:linear-gradient(to top,#000,#7a0000 25%,#e02000 48%,#ff9a00 70%,#ffe14d 87%,#fff);box-shadow:0 0 0 1px rgba(230,237,243,.35)}
+.lut span{display:flex;flex-direction:column;justify-content:space-between;color:var(--on-dense)}
+.lut b{font-weight:500;background:rgba(0,0,0,.6);padding:1px 3px;border-radius:2px}
+.scan-foot p{font-size:13.5px;color:var(--on-dense-2);line-height:1.35;max-width:30em}
+.presets{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.segs{display:flex;gap:0;margin-top:8px;flex-wrap:wrap;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(230,237,243,.14);width:max-content;max-width:100%}
+.segs button{font:500 12px/1 var(--body);color:var(--on-dense);background:transparent;border:0;padding:7px 10px;cursor:pointer;border-radius:3px}
+.segs button:hover{background:rgba(255,255,255,.12)}
+.segs button[aria-pressed="true"]{background:rgba(230,237,243,.92);color:var(--on-accent)}
+.segs .k{display:inline-block;width:8px;height:8px;margin-right:6px;vertical-align:0;border-radius:1px}
+.ov-ai{bottom:54px;right:6px}
+.ai-note{font-size:12px;color:var(--on-dense-2);margin-top:8px;line-height:1.35}
+.presets button{font:500 12.5px/1 var(--body);color:var(--on-dense);background:rgba(255,255,255,.08);border:0;border-radius:3px;padding:8px 12px;cursor:pointer;transition:background-color .2s,color .2s;box-shadow:inset 0 0 0 1px rgba(230,237,243,.14)}
+.presets button:hover{background:rgba(255,255,255,.16);color:#fff}
+.presets button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);box-shadow:none}
+
+.t-stat{grid-area:stat;background:var(--film-1);color:var(--ink)}
+.t-stat .tag{color:var(--ink-2)}
+.stat-row{display:flex;align-items:flex-end;gap:22px;margin-top:auto}
+.big{font-family:var(--display);font-weight:750;font-size:clamp(54px,5.4vw,88px);line-height:.85;letter-spacing:-.05em;font-variant-numeric:tabular-nums;font-variation-settings:"opsz" 96;display:flex;align-items:baseline;gap:.12em}
+.big small{font-size:.42em;font-weight:600;color:var(--ink-2);letter-spacing:-.02em}
+.big .arr{font-size:.45em;font-weight:500;color:var(--ink-2);align-self:center}
+.bars{display:flex;align-items:flex-end;gap:8px;height:92px;flex:none;border-bottom:1.5px solid var(--ink)}
+.bars span{width:26px;border-radius:2px 2px 0 0;background:var(--bar-hi);height:var(--h);transform-origin:bottom;transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.bars span:first-child{background:var(--bar-lo)}
+.big{position:relative}
+.cal{position:absolute;left:0;right:0;bottom:-20px;height:14px;display:block;color:var(--ink-2);pointer-events:none}
+.cal svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.cal em{position:absolute;left:50%;top:-3px;translate:-50% 0;font:500 10px/1 var(--mono);font-style:normal;letter-spacing:.02em;background:var(--film-1);padding:0 5px;color:var(--ink-2)}
+.t-stat .big{margin-bottom:22px}
+.roi{position:absolute;left:-.28em;top:-.12em;width:1.25em;height:1.25em;color:var(--ink-2);pointer-events:none;overflow:visible}
+.t-pubs .big{position:relative;display:inline-grid;place-items:center;line-height:1}
+.t-pubs .big .roi{left:50%;top:50%;transform:translate(-50%,-50%);width:1.32em;height:1.32em}
+.t-photo .ring .roi{left:auto;top:auto;right:-10px;bottom:-6px;width:46px;height:46px;opacity:.75}
+.t-stat .lbl{font-size:14.5px;margin-top:12px;color:var(--ink-mid);font-weight:500;line-height:1.35}
+
+.t-pubs{grid-area:pubs;background:var(--film-2)}
+.t-pubs .tag{color:var(--ink-mid);padding-right:56px}
+.t-pubs .big{margin-top:auto;margin-bottom:.24em;font-size:clamp(56px,5vw,80px)}
+.t-pubs p{font-size:13.5px;line-height:1.35;margin-top:8px;color:var(--ink-mid);font-weight:500}
+
+.t-awards{grid-area:awards;background:var(--film-3);color:var(--on-dense)}
+.t-awards ul{list-style:none;margin:auto 0 0;padding:0;display:grid;gap:10px}
+.t-awards li{display:flex;align-items:baseline;gap:12px;font-size:15px;line-height:1.3;color:var(--on-dense)}
+.t-awards li b{font-family:var(--mono);font-weight:500;font-size:11px;color:var(--accent);flex:none;width:3.4em}
+.t-awards .tag{color:var(--on-dense-2)}
+
+.t-links{grid-area:links;background:var(--film-1);padding:20px;padding-top:28px}
+.t-links .tag{color:var(--ink-2)}
+.t-links ul{list-style:none;padding:0;margin:auto 0 0;display:grid;gap:6px}
+.t-links a{display:flex;justify-content:space-between;align-items:center;text-decoration:none;font-weight:600;font-size:15.5px;padding:9px 12px;border-radius:3px;background:var(--chip-hi);box-shadow:inset 0 -2px 0 var(--accent);transition:background-color .2s, transform .2s}
+.t-links a:hover{background:var(--accent);color:var(--on-accent);transform:translateX(3px)}
+.t-links a svg{width:14px;height:14px}
+
+/* ---------- sections ---------- */
+section.block{padding-top:96px}
+.shead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px;flex-wrap:wrap}
+.shead h2{font-size:clamp(38px,4.6vw,64px);font-weight:700;letter-spacing:-.035em;font-variation-settings:"opsz" 96}
+.shead .kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;color:var(--ink-2)}
+.shead .kicker i{display:inline-block;width:14px;height:14px;border-radius:2px;background:var(--accent);box-shadow:inset 0 0 0 1px rgba(20,32,41,.25)}
+.shead p.side{max-width:30em;color:var(--ink-2);font-size:16.5px}
+
+.card{position:relative;border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow);overflow:hidden;isolation:isolate;background:var(--film-1);
+  transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));
+  transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .3s}
+.card::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%), var(--backlight), transparent 60%)}
+.card.live:hover::after{opacity:1}
+.card.live:hover{--ty:-3px;box-shadow:var(--shadow-up)}
+.paper{background:var(--film-0)}
+.dense{background:var(--film-3);color:var(--on-dense)}
+
+/* about */
+.about{display:grid;grid-template-columns:1.1fr 1fr;gap:var(--gap)}
+.about .statement{background:var(--film-0);display:flex;flex-direction:column;gap:22px}
+.about .statement p.q{font-family:var(--display);font-size:clamp(26px,2.5vw,36px);line-height:1.12;letter-spacing:-.025em;font-weight:600}
+.about .statement p.q em{font-style:normal;background:linear-gradient(transparent 62%, var(--hl) 62%)}
+.prose p+p{margin-top:14px}
+.prose{color:var(--ink-mid);font-size:16.5px}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);grid-column:1 / -1}
+.pillar h3{font-size:24px;font-weight:700;margin-bottom:8px}
+.pillar p{font-size:15.5px;line-height:1.45}
+.pillar .n{font-family:var(--mono);font-size:11px;display:block;margin-bottom:28px;color:var(--ink-2)}
+.pc-1{background:var(--film-3);color:var(--on-dense)}
+.pc-1 .n{color:var(--accent)}
+.pc-2{background:var(--film-2)}
+.pc-2 .n{color:var(--ink-mid)}
+.pc-3{background:var(--film-1)}
+
+/* toolkit */
+.toolkit{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--gap);margin-top:var(--gap)}
+.tool h3{font-size:19px;font-weight:700;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0}
+.chips li{font-size:13.5px;line-height:1.2;padding:7px 10px;border-radius:3px;background:var(--tint);font-weight:500}
+.tool:nth-child(odd){background:var(--film-1)}
+.tool:nth-child(even){background:var(--film-2)}
+.tool:nth-child(even) .chips li{background:var(--chip-hi)}
+.tool:nth-child(5){background:var(--film-3);color:var(--on-dense)}
+.tool:nth-child(5) .chips li{background:rgba(255,255,255,.1)}
+
+/* work */
+.work{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--gap)}
+.proj{display:flex;flex-direction:column;gap:12px;min-height:290px}
+.proj h3{font-size:clamp(22px,1.9vw,28px);font-weight:700;line-height:1.08}
+.proj p{font-size:15.5px;line-height:1.5}
+.proj .meta{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px;padding-top:6px}
+.proj .meta span{font-family:var(--mono);font-size:11px;letter-spacing:.03em;text-transform:uppercase;padding:6px 9px;border-radius:3px;background:var(--tint)}
+.proj .status{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:7px 11px;border-radius:3px;background:var(--tint)}
+.w-ich{grid-column:span 4;background:var(--film-3);color:var(--on-dense);display:grid;grid-template-columns:1fr auto;gap:28px;align-items:stretch}
+.w-ich .txt{display:flex;flex-direction:column;gap:12px}
+.w-ich .meta span,.w-ich .status{background:rgba(255,255,255,.1)}
+.w-ich p{color:var(--on-dense)}
+.w-mri{grid-column:span 2;background:var(--film-2)}
+.w-ti{grid-column:span 3;background:var(--film-1);display:grid;grid-template-columns:1fr auto;gap:24px}
+.w-ti .txt{display:flex;flex-direction:column;gap:12px}
+.w-ment{grid-column:span 3;background:var(--film-2)}
+.w-cem{grid-column:span 3;background:var(--film-1)}
+.w-back{grid-column:span 3;background:var(--film-0)}
+.w-back a.src{font-weight:600;text-decoration:none;box-shadow:inset 0 -.4em 0 var(--hl)}
+.fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:8px;align-self:center}
+.fig .frame{width:200px;height:200px;aspect-ratio:auto}
+.fig canvas{width:200px;height:200px;border-radius:3px;background:#000;display:block}
+.fig .ov{display:none}
+.fig figcaption{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;text-align:center;max-width:22em;color:var(--on-dense-2)}
+.w-mri .figrow{display:flex;gap:16px;align-items:center}
+.w-mri .fig canvas{width:110px;height:110px}
+.proj-art{display:block;width:100%;max-width:220px;height:auto;margin:14px auto 0;color:var(--ink-2)}
+.proj-art .ac{fill:var(--accent);stroke:var(--ink-2)}
+.proj-art .fl{fill:var(--film-3)}
+.ti-chart{width:200px;height:auto;align-self:center}
+.ti-chart .b1{fill:var(--bar-lo)}
+.ti-chart .b2{fill:var(--bar-hi)}
+.ti-chart text{font-family:var(--display);font-weight:700;fill:var(--ink);text-anchor:middle}
+.ti-chart text.l{font-family:var(--body);font-weight:500;font-size:12px}
+.ti-chart .ax{stroke:var(--ink);stroke-width:1.5}
+
+/* experience */
+.xp{list-style:none;margin:0;padding:0;display:grid;gap:var(--gap)}
+.xp li{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:start}
+.xp time{display:inline-block;font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;padding:8px 12px;border-radius:3px;background:var(--film-2);color:var(--ink);justify-self:start;box-shadow:inset 3px 0 0 var(--accent)}
+.xp li:first-child time{background:var(--film-3);color:var(--on-dense)}
+.xp h3{font-size:24px;font-weight:700}
+.xp .org{color:var(--ink-2);font-weight:500;margin:4px 0 10px}
+.xp p+p{margin-top:8px}
+.xp .body p:not(.org){font-size:16px;color:var(--ink-mid)}
+
+/* publications */
+.pubs-wrap{display:grid;grid-template-columns:1fr 340px;gap:var(--gap)}
+.refs{list-style:none;margin:0;padding:0;counter-reset:r}
+.refs li{counter-increment:r;display:grid;grid-template-columns:56px 1fr;gap:14px;padding:20px 0;border-top:1px solid var(--line);font-size:16px;line-height:1.5}
+.refs li:first-child{border-top:0;padding-top:4px}
+.refs li::before{content:counter(r, decimal-leading-zero);font-family:var(--display);font-weight:700;font-size:28px;line-height:1;color:var(--ink-2);letter-spacing:-.03em}
+.refs li a{font-family:var(--mono);font-size:12px;display:inline-block;margin-top:6px;color:var(--ink);text-decoration:none;box-shadow:inset 0 -2px 0 var(--accent);word-break:break-all}
+.refs li a:hover{background:var(--accent);color:var(--on-accent)}
+.refs i{font-style:italic}
+.side-stack{display:grid;gap:var(--gap);align-content:start}
+.submitted{background:var(--film-2)}
+.submitted h3{font-size:22px;font-weight:700;margin-bottom:14px}
+.submitted ul{margin:0;padding:0;list-style:none;display:grid;gap:14px;font-size:15px;line-height:1.45}
+.orcid{background:var(--film-3);color:var(--on-dense)}
+.orcid p{font-size:15px;color:var(--on-dense)}
+.orcid p.mono{color:var(--on-dense-2) !important}
+.orcid a.btn{margin-top:16px;background:var(--film-1);color:var(--ink);box-shadow:inset 0 -3px 0 var(--accent)}
+.orcid a.btn:hover{background:var(--accent);color:var(--on-accent)}
+
+/* credentials */
+.creds{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.cred h3{font-size:22px;font-weight:700;margin-bottom:16px}
+.cred ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.cred li{font-size:15.5px;line-height:1.4}
+.cred li small{display:block;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-2);margin-top:3px}
+.c-1{background:var(--film-3);color:var(--on-dense)}
+.c-1 li small{color:var(--accent)}
+.c-2{background:var(--film-2)}
+.c-2 li small{color:var(--ink-mid)}
+.c-3{background:var(--film-1)}
+.c-4{background:var(--film-0)}
+
+/* contact */
+.contact{margin:96px 0 0;background:var(--film-3);color:var(--on-dense);border-radius:6px;box-shadow:var(--shadow);padding:clamp(32px,6vw,80px);display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;position:relative;overflow:hidden}
+.contact h2{font-size:clamp(40px,5.6vw,84px);font-weight:700;letter-spacing:-.04em;line-height:.95;font-variation-settings:"opsz" 96}
+.contact h2 span{color:var(--accent)}
+.contact p.sub{margin-top:18px;font-size:18px;color:var(--on-dense);max-width:28em}
+.contact p.mono{color:var(--on-dense-2) !important}
+.contact .actions{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.contact .btn-coral{font-size:17px;padding:16px 22px;max-width:100%;white-space:normal;word-break:break-all}
+.contact ul{list-style:none;padding:0;margin:8px 0 0;display:flex;gap:8px;flex-wrap:wrap}
+.contact ul a{display:inline-block;padding:10px 16px;border-radius:4px;text-decoration:none;font-weight:600;box-shadow:inset 0 0 0 1.5px rgba(230,237,243,.4)}
+.contact ul a:hover{background:var(--accent);color:var(--on-accent);box-shadow:none}
+.contact .orbit{position:absolute;left:-160px;bottom:-200px;width:520px;opacity:.3;pointer-events:none}
+footer.fine{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:24px 4px 40px;color:var(--ink-2);font-size:13.5px}
+
+/* ---------- responsive ---------- */
+@media (max-width:1180px){
+  .toolkit{grid-template-columns:repeat(3,1fr)}
+  .creds{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:1099px){
+  .bento{height:auto;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:minmax(200px,auto);
+    grid-template-areas:
+      "intro intro intro photo"
+      "intro intro intro now"
+      "scan scan stat stat"
+      "scan scan pubs links"
+      "awards awards awards awards";}
+  .t-intro h1{font-size:clamp(44px,6.4vw,66px)}
+  .t-scan .viewer{min-height:300px}
+  .work{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .w-ich,.w-ti{grid-column:1 / -1}
+  .w-mri,.w-ment,.w-cem,.w-back{grid-column:span 1}
+  .pubs-wrap{grid-template-columns:1fr}
+  .side-stack{grid-template-columns:1fr 1fr}
+  .about{grid-template-columns:1fr}
+  .contact{grid-template-columns:1fr}
+}
+@media (max-width:1080px){
+  .nav .wrap{height:auto;min-height:64px;flex-wrap:wrap;row-gap:0;column-gap:12px;padding-top:12px}
+  .nav .lights{margin-left:auto}
+  .nav nav{order:3;flex:1 0 100%;margin:0 -24px;padding:2px 0 4px}
+  .series-strip{overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:24px;padding:8px 24px;scrollbar-width:none;overscroll-behavior-x:contain}
+  .series-strip::-webkit-scrollbar{display:none}
+  .series-strip li{flex:1 0 auto}
+  section.block{scroll-margin-top:60px}
+}
+@media (max-width:720px){
+  .nav nav{margin:0 -16px}
+  .series-strip{scroll-padding-inline:16px;padding:8px 16px}
+  .series-strip li{flex:none}
+}
+@media (max-width:720px){
+  .wrap{padding:0 16px}
+  :root{--gap:12px}
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto;
+    grid-template-areas:
+      "intro intro"
+      "photo now"
+      "stat stat"
+      "scan scan"
+      "pubs links"
+      "awards awards";}
+  .tile{padding:20px;padding-top:26px}
+  .corner{display:none}
+  .t-now .tag,.t-pubs .tag{padding-right:0}
+  .t-intro{padding:30px 24px 28px}
+  .t-intro h1{font-size:clamp(40px,11.5vw,56px);margin-top:28px}
+  .t-intro .orbit{width:260px;height:260px;right:-100px;top:-100px}
+  .t-photo{min-height:200px}
+  .t-photo .ring{width:min(100%,128px)}
+  .t-now{min-height:200px}
+  .t-now h2{font-size:18px;margin-top:22px}
+  .t-stat{min-height:200px}
+  .t-stat .big{font-size:52px}
+  .bars{height:74px}.bars span{width:20px}
+  .t-scan .viewer{min-height:0;height:auto}
+  .t-scan .frame{width:100%;height:auto}
+  .scan-foot{flex-direction:column;align-items:flex-start}
+  .segs button{padding:7px 8px}
+  .t-pubs .big{font-size:64px;margin-top:24px}
+  .t-links ul{margin-top:18px}
+  .t-awards ul{margin-top:22px}
+  section.block{padding-top:72px}
+  .card{padding:22px}
+  .pillars,.toolkit,.creds,.work,.side-stack{grid-template-columns:1fr}
+  .w-ich,.w-ti,.w-mri,.w-ment,.w-cem,.w-back{grid-column:auto}
+  .w-ich,.w-ti{grid-template-columns:1fr}
+  .w-ich .fig{order:-1}
+  .fig .frame,.fig canvas{width:170px;height:170px}
+  .proj{min-height:0}
+  .xp li{grid-template-columns:1fr;gap:12px}
+  .refs li{grid-template-columns:40px 1fr;gap:10px}
+  .refs li::before{font-size:22px}
+  .contact{margin-top:72px}
+}
+@media (prefers-reduced-motion: reduce){
+  .tile{animation:none}
+  .pulse{animation:none}
+  .tile,.card,.btn,.btn svg,.corner,.ring,.t-photo img,.bars span{transition:none !important}
+}
+
+/* uniform figure plates on project cards */
+.work{grid-template-columns:repeat(2,minmax(0,1fr))}
+.work .proj{display:grid;grid-template-columns:minmax(0,1fr) 168px;column-gap:26px;row-gap:12px;align-content:start;align-items:start;min-height:0}
+.work .proj > *:not(.plate){grid-column:1}
+.work .proj > .plate{grid-column:2;grid-row:1 / span 8;align-self:start}
+.work .w-ich,.work .w-mri,.work .w-ti,.work .w-ment,.work .w-cem,.work .w-back{grid-column:auto}
+.plate{margin:0;width:168px;display:flex;flex-direction:column;align-items:stretch;gap:8px}
+.plate .frame{position:relative;width:168px;height:168px;border-radius:4px;overflow:hidden;background:#000;display:grid;place-items:center}
+.plate .frame.art{background:var(--tint);color:var(--ink-2)}
+.plate canvas{width:168px !important;height:168px !important;border-radius:0}
+.plate .frame svg{width:86%;height:auto;max-width:none;margin:0}
+.plate figcaption{font-family:var(--mono);font-size:11px;line-height:1.4;text-transform:uppercase;letter-spacing:.04em;text-align:left;max-width:none;color:inherit;opacity:.75}
+.w-ti .ti-chart{width:86%}
+@media (max-width:720px){
+  .work{grid-template-columns:1fr}
+  .work .proj{grid-template-columns:1fr}
+  .work .proj > .plate{grid-column:1;grid-row:auto}
+}
+/* ---- HU probe ---- */
+.probe{position:absolute;left:0;top:0;z-index:6;pointer-events:none;font:500 10px/1.2 var(--mono);text-transform:none;letter-spacing:.02em;white-space:nowrap;color:#E6EDF3;background:rgba(7,11,15,.86);padding:5px 7px;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(245,197,24,.55)}
+.probe[hidden]{display:none}
+/* ---- first-visit loader ---- */
+.boot{display:none}
+html.boot-on .boot{display:flex;position:fixed;inset:0;z-index:100;background:var(--box);flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .35s ease}
+html.boot-on.boot-fade .boot{opacity:0;pointer-events:none}
+.boot p{font:500 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.boot .bar{width:min(240px,60vw);height:2px;background:var(--line);overflow:hidden}
+.boot .bar i{display:block;height:100%;width:100%;background:var(--accent);transform-origin:left;transform:scaleX(var(--p,0))}
+html.boot-on:not(.switch-on) .bento .tile{opacity:0;animation:none}
+@keyframes switchon{0%{opacity:0}6%{opacity:.85}10%{opacity:.3}15%{opacity:.95}20%{opacity:.6}100%{opacity:1}}
+@media (prefers-reduced-motion: no-preference){
+  html.switch-on .bento .tile{animation:switchon .75s linear both;animation-delay:calc(var(--i,0) * 85ms)}
+}
+/* ---- callipers draw themselves ---- */
+.draw-pre line,.draw-pre circle,.draw-pre path{stroke-dasharray:100 100;stroke-dashoffset:100}
+.draw-pre.draw-go line,.draw-pre.draw-go circle,.draw-pre.draw-go path{stroke-dashoffset:0;transition:stroke-dashoffset .9s cubic-bezier(.4,0,.2,1)}
+/* ---- hover windowing on plates ---- */
+.plate canvas{transition:filter .6s ease}
+.proj:hover .plate canvas,.proj:focus-within .plate canvas{filter:brightness(1.22) contrast(1.4)}
+/* ---- case-study drawers ---- */
+.study-btn{align-self:flex-start;justify-self:start;display:inline-flex;align-items:center;gap:8px;font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:inherit;background:transparent;border:0;border-radius:3px;padding:9px 12px;cursor:pointer;box-shadow:inset 0 0 0 1.5px currentColor;transition:background-color .2s,color .2s}
+.study-btn:hover{background:var(--accent);color:var(--on-accent);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.study-btn:focus-visible,.dlg-x:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.w-ich .txt .study-btn{margin-top:12px}
+.study-btn[hidden]{display:none}
+html.scroll-lock{overflow:hidden}
+dialog.study{margin:0 0 0 auto;padding:0;border:0;width:min(560px,100vw);max-width:100vw;height:100%;max-height:100%;background:var(--box);color:var(--ink);box-shadow:-24px 0 48px -24px rgba(0,0,0,.5);overflow:auto;overscroll-behavior:contain}
+dialog.study::backdrop{background:rgba(7,11,15,.62)}
+@media (prefers-reduced-motion: no-preference){
+  dialog.study[open]{animation:slidein .38s cubic-bezier(.2,.8,.2,1)}
+  dialog.study[open]::backdrop{animation:fadein .38s ease}
+}
+@keyframes slidein{from{transform:translateX(100%)}to{transform:none}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.study .sheet{padding:28px clamp(20px,4vw,40px) 40px;border-left:4px solid var(--accent);min-height:100%}
+.study .rhead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.study .rhead p{font:500 11px/1.5 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2)}
+.study h2{font-family:var(--display);font-size:clamp(24px,3vw,32px);line-height:1.1;font-weight:700;margin:18px 0 6px}
+.study h3{font:500 12px/1 var(--mono);letter-spacing:.06em;color:var(--ink-2);margin:24px 0 8px}
+.study p.rb{font-size:16px;line-height:1.6;max-width:42em}
+.study a{color:inherit;font-weight:600;text-decoration:none;box-shadow:inset 0 -.4em 0 var(--hl)}
+.study .sig{margin-top:30px;padding-top:12px;border-top:1px dashed var(--line);font:500 10.5px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--ink-2)}
+.dlg-x{flex:none;display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:4px;background:var(--tint);color:var(--ink);cursor:pointer}
+.dlg-x:hover{background:var(--accent);color:var(--on-accent)}
+.dlg-x svg{width:18px;height:18px}
+@media (max-width:600px){ dialog.study{width:100vw} .study .sheet{border-left:0;border-top:4px solid var(--accent)} }
+/* ---- closing contact ---- */
+.contact{grid-template-columns:1fr;align-items:start;gap:32px}
+.contact h2{font-size:clamp(46px,11vw,168px);letter-spacing:-.05em;line-height:.9}
+.contact p.sub{font-size:clamp(18px,1.8vw,22px)}
+.contact .actions{flex-direction:row;flex-wrap:wrap;align-items:center;gap:16px 20px}
+.contact .actions ul{margin:0}
+.contact .btn-mag{font-size:clamp(17px,1.8vw,22px);padding:20px 28px;word-break:normal;overflow-wrap:anywhere;transition:translate .25s cubic-bezier(.2,.8,.2,1), background-color .2s, box-shadow .2s}
+@media (prefers-reduced-motion: reduce){ .contact .btn-mag{translate:none !important;transition:none} .plate canvas{transition:none} }
+
+/* project tile interactions */
+.ti-chart .b1,.ti-chart .b2,.proj-art .ac{transform-box:fill-box}
+.ti-chart .b1,.ti-chart .b2{transform-origin:50% 100%}
+.w-cem .proj-art .ac{fill-opacity:.25;transform-origin:center;transition:fill-opacity .5s ease}
+.w-cem:is(:hover,:focus-within) .proj-art .ac{fill-opacity:1}
+@media (prefers-reduced-motion: no-preference){
+  @keyframes flow{to{stroke-dashoffset:-12}}
+  @keyframes pulse{50%{transform:scale(1.18)}}
+  @keyframes copy{0%{transform:translateX(-14px);opacity:0}25%{opacity:1}80%{opacity:1}100%{transform:translateX(26px);opacity:0}}
+  @keyframes grow{from{transform:scaleY(.08)}}
+  .w-ment:is(:hover,:focus-within) .proj-art g[stroke-dasharray]{animation:flow .7s linear infinite}
+  .w-ment:is(:hover,:focus-within) .proj-art .ac{transform-origin:center;animation:pulse 1.2s ease-in-out infinite}
+  .w-back:is(:hover,:focus-within) .proj-art .ac{animation:copy 1.4s ease-in-out infinite}
+  .w-cem:is(:hover,:focus-within) .proj-art .ac{transform-origin:center;animation:pulse 1.6s ease-in-out infinite}
+  .w-ti:is(:hover,:focus-within) .ti-chart .b1{animation:grow .7s cubic-bezier(.2,.8,.2,1)}
+  .w-ti:is(:hover,:focus-within) .ti-chart .b2{animation:grow 1.1s cubic-bezier(.2,.8,.2,1)}
+}
+
+/* proportional figure plates */
+.work .proj{grid-template-columns:minmax(0,1fr) clamp(150px,34%,230px);align-items:center}
+.work .proj > .plate{width:100%;align-self:center}
+.plate .frame{width:100%;height:auto;aspect-ratio:1}
+.plate canvas{width:100% !important;height:100% !important}
+@media (max-width:720px){.work .proj > .plate{max-width:240px}}
+
+
+/* project tiles v3: full-height viewer panel on the right, chips hug content */
+.work .proj{grid-template-columns:minmax(0,1fr) clamp(170px,36%,250px);align-items:start;column-gap:28px;padding-right:0}
+.work .proj > *:not(.plate){justify-self:start;max-width:100%}
+.work .proj > h3, .work .proj > p, .work .proj > .txt{justify-self:stretch}
+.work .proj > .plate{align-self:stretch;margin:-28px 0 -28px 0;width:auto}
+.work .proj .plate .frame{width:100%;height:100%;min-height:200px;aspect-ratio:auto;border-radius:0;display:grid;place-items:center;padding:18px;background:#05080b}
+.work .proj .plate .frame.art{background:var(--tint)}
+.work .proj .plate canvas{width:100% !important;height:auto !important;aspect-ratio:1;max-width:220px}
+.work .proj .plate .frame svg{width:100%;max-width:200px}
+.work .w-ti .ti-chart{width:100%;max-width:170px}
+.w-ich .txt .status, .w-ti .txt .status{align-self:flex-start}
+@media (max-width:720px){
+  .work .proj{padding-right:28px}
+  .work .proj > .plate{margin:4px 0 0;max-width:none}
+  .work .proj .plate .frame{min-height:0;aspect-ratio:16/10;border-radius:4px}
+  .work .proj .plate canvas{max-width:180px}
+}
+
+@media (min-width:721px){
+  .work .proj{display:flex;flex-direction:column;gap:12px;padding-right:calc(clamp(170px,36%,250px) + 28px)}
+  .work .proj > .plate{position:absolute;top:0;right:0;bottom:0;width:clamp(170px,36%,250px);margin:0}
+  .work .proj .plate .frame{min-height:0}
+  .work .w-ich > .txt, .work .w-ti > .txt{display:flex;flex-direction:column;gap:12px}
+}
+
+
+/* faulty lightbox: tube power-on flicker, cool-down afterglow, occasional buzz */
+.tube{position:fixed;inset:0;pointer-events:none;z-index:999;opacity:0;background:#0b0f13}
+.tube.on{animation:tube-on 1s steps(1,end) forwards}
+.tube.off{background:#dfe9f2;animation:tube-off .8s ease-out forwards}
+@keyframes tube-on{0%{opacity:1}7%{opacity:.12}11%{opacity:1}21%{opacity:.4}25%{opacity:.9}37%{opacity:.08}43%{opacity:.6}52%{opacity:0}61%{opacity:.22}65%{opacity:0}100%{opacity:0}}
+@keyframes tube-off{0%{opacity:.25}100%{opacity:0}}
+.tile.buzz{animation:buzz .45s steps(1,end)}
+@keyframes buzz{0%{filter:brightness(1)}18%{filter:brightness(.8)}28%{filter:brightness(1.03)}52%{filter:brightness(.88)}62%{filter:brightness(1)}}
+@media (prefers-reduced-motion: reduce){.tube,.tile.buzz{animation:none !important;opacity:0}}
+
+/* institution logos as faint watermarks */
+.xp li.has-logo{position:relative;overflow:hidden;isolation:isolate}
+.xp li.has-logo::after{content:"";position:absolute;z-index:-1;left:auto;bottom:auto;right:-48px;top:50%;width:240px;height:240px;transform:translateY(-50%);background:currentColor;color:var(--ink);opacity:var(--wm,.11);-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat;transition:opacity .6s ease,transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.xp li.has-logo:hover::after,.xp li.has-logo:focus-within::after{opacity:.2;transform:translateY(-50%) translateX(-6px) scale(1.04)}
+@media (max-width:720px){.xp li.has-logo::after{width:42%;height:110px;right:12px;top:auto;bottom:10px;transform:none}}
+/* ambient reading-room backdrop */
+body{position:relative}
+:root{--ring:rgba(60,90,120,.12)}
+:root[data-theme="dark"]{--ring:rgba(230,237,243,.07)}
+.ambient{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.ambient::before{content:"";position:absolute;inset:-300px 0 0 -300px;background:linear-gradient(135deg,#1fb5a4,#3b82c4 45%,#7c5cc4);opacity:var(--doodle-o,.24);-webkit-mask:url(assets/doodles.svg) 0 0/300px 300px repeat;mask:url(assets/doodles.svg) 0 0/300px 300px repeat}
+:root[data-theme="dark"]{--doodle-o:.36}
+.ambient .glow{position:absolute;width:70vmax;height:70vmax;left:50%;top:40%;margin:-35vmax 0 0 -35vmax;border-radius:50%;background:radial-gradient(closest-side,var(--glow-2),transparent);opacity:.9}
+.ambient .ring{position:absolute;top:50%;width:min(46vw,760px);aspect-ratio:1;border-radius:50%;margin-top:calc(min(46vw,760px) / -2);
+  background:repeating-radial-gradient(circle,transparent 0 38px,var(--ring) 38px 39px);-webkit-mask:radial-gradient(circle,#000 55%,transparent 71%);mask:radial-gradient(circle,#000 55%,transparent 71%)}
+.ambient .ring::after{content:"";position:absolute;inset:8%;border-radius:50%;border:1px dashed var(--ring)}
+.ambient .r1{left:calc(min(46vw,760px) / -2)}
+.ambient .r2{right:calc(min(46vw,760px) / -2)}
+.ambient .sweep{position:absolute;left:0;right:0;top:-12vh;height:12vh;background:linear-gradient(transparent,var(--glow-2) 70%,transparent);opacity:0}
+@media (prefers-reduced-motion: no-preference){
+  .ambient .glow{animation:drift 38s ease-in-out infinite alternate}
+  .ambient::before{animation:pan 160s linear infinite;will-change:transform}
+  @keyframes pan{to{transform:translate(300px,300px)}}
+  .ambient .ring{animation:spin 160s linear infinite}
+  .ambient .r2{animation-direction:reverse}
+  .ambient .sweep{animation:sweep 12s cubic-bezier(.4,0,.2,1) infinite}
+  @keyframes drift{from{transform:translate(-14vw,-6vh)}to{transform:translate(14vw,8vh)}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes sweep{0%,72%{transform:translateY(0);opacity:0}76%{opacity:.9}100%{transform:translateY(124vh);opacity:0}}
+}
+</style>
+</head>
+<body>
+<div class="ambient" aria-hidden="true"><div class="glow"></div><div class="sweep"></div></div>
+<div class="boot" aria-hidden="true"><p id="boot-n">Acquiring · Im 0/40</p><span class="bar"><i id="boot-bar"></i></span></div>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Syed Mohammad Hasan, back to top"><i aria-hidden="true">SMH</i><span>S. M. Hasan</span></a>
+    <nav aria-label="Sections">
+      <ul class="series-strip">
+        <li><a class="series" href="#about"><span class="se" aria-hidden="true">SE 1</span><span class="lb">About</span></a></li>
+        <li><a class="series" href="#work"><span class="se" aria-hidden="true">SE 2</span><span class="lb">Work</span></a></li>
+        <li><a class="series" href="#experience"><span class="se" aria-hidden="true">SE 3</span><span class="lb">Experience</span></a></li>
+        <li><a class="series" href="#publications"><span class="se" aria-hidden="true">SE 4</span><span class="lb">Publications</span></a></li>
+        <li><a class="series" href="#credentials"><span class="se" aria-hidden="true">SE 5</span><span class="lb">Credentials</span></a></li>
+      </ul>
+    </nav>
+    <button class="lights" type="button" id="lights" aria-pressed="false" aria-label="Lights off" title="Lights off"><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="12" rx="1.5"/><path d="M12 5v12M4 11h16M9 21h6M12 17v4"/></svg><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5Z"/></svg></button>
+    <a class="btn btn-ink btn-small" href="mailto:smhasan.yad@gmail.com">Email<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ================= BENTO ================= -->
+  <div class="wrap hero">
+    <div class="bento">
+
+      <section class="tile t-intro live" style="--i:0" aria-labelledby="name">
+        <svg class="orbit" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#A9B8C6" stroke-width=".6"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="76"/><circle cx="100" cy="100" r="56"/><circle cx="100" cy="100" r="36"/></g></svg>
+        <p class="tag mono"><span class="dot" aria-hidden="true"></span>Radiology resident · Clinical AI</p>
+        <div>
+          <h1 id="name">Syed Mohammad <span>Hasan, MBBS</span></h1>
+          <p class="lede">A radiologist in training who works on both sides of imaging AI: reading the scans, and testing the models that read them.</p>
+          <p class="role">Resident, Diagnostic Radiology · Aga Khan University Hospital, Karachi</p>
+          <div class="actions">
+            <a class="btn btn-coral" href="mailto:smhasan.yad@gmail.com">Email smhasan.yad@gmail.com<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn-ghost" href="#work">See the work</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="tile t-photo live" style="--i:1">
+        <div class="ring"><img src="assets/headshot.jpg" width="276" height="276" alt="Portrait of Syed Mohammad Hasan"></div>
+        <p class="cap">Karachi, Pakistan<span>GMC &amp; PMDC registered</span></p>
+      </div>
+
+      <article class="tile t-now live" style="--i:2">
+        <p class="tag mono"><span class="pulse" aria-hidden="true"></span>Currently</p>
+        <span class="corner" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h2>Deep learning for intracranial haemorrhage on head CT</h2>
+        <p>Single-centre evaluation · ongoing</p>
+        <a class="cover" href="#p-ich" aria-label="Currently: deep learning for intracranial haemorrhage on head CT. Read more"></a>
+      </article>
+
+      <figure class="tile t-scan" style="--i:3;margin:0">
+        <div class="scan-head mono"><span>Synthetic head CT</span></div>
+        <div class="viewer" id="viewer" tabindex="0" role="img" aria-label="Animated synthetic head CT slice, procedurally generated, not a patient scan. Includes a simulated haemorrhage with optional synthetic segmentation overlays. Drag or use the arrow keys to change window and level.">
+          <div class="frame" aria-hidden="true">
+            <canvas id="scan" width="440" height="440"></canvas>
+            <span class="xh"></span>
+            <span class="ov ov-tl">Synthetic phantom</span>
+            <span class="ov ov-tr" id="slice">Se 2 · Im 20/40</span>
+            <span class="ov ov-bl" id="wlov">W 80 · L 40</span>
+            <span class="ov ov-br">No patient data</span>
+            <span class="ov ov-ai" id="aiov" hidden></span>
+            <span class="probe" id="probe" hidden></span>
+            <canvas class="scout" id="scout" width="140" height="140"></canvas>
+            <span class="lut" id="lut" hidden><i></i><span><b>high</b><b>low</b></span></span>
+            <span class="sbar"><i></i><span>5 cm</span></span>
+            <span class="or or-a">A</span><span class="or or-p">P</span><span class="or or-r">R</span><span class="or or-l">L</span>
+          </div>
+        </div>
+        <figcaption>
+          <div class="scan-foot">
+            <p>Procedural phantom, no patient data. Drag the image to window it.</p>
+            <span class="sr" id="wl" aria-live="polite">W 80 · L 40</span>
+          </div>
+          <div class="ctl-row"><div class="presets" role="group" aria-label="Window presets">
+            <button type="button" data-w="80" data-l="40" aria-pressed="true">Brain</button>
+            <button type="button" data-w="200" data-l="60" aria-pressed="false">Subdural</button>
+            <button type="button" data-w="2200" data-l="400" aria-pressed="false">Bone</button>
+          </div><button type="button" class="playbtn" id="playbtn" aria-label="Pause scan" data-paused="false"><svg class="i-pause" viewBox="0 0 14 14" aria-hidden="true"><rect x="3" y="2" width="3" height="10"/><rect x="8" y="2" width="3" height="10"/></svg><svg class="i-play" viewBox="0 0 14 14" aria-hidden="true"><path d="M4 2l8 5-8 5z"/></svg></button></div>
+          <div class="segs" role="group" aria-label="Segmentation overlay">
+            <button type="button" data-m="img" aria-pressed="true">Image</button>
+            <button type="button" data-m="rad" aria-pressed="false"><span class="k" style="box-shadow:inset 0 0 0 1.5px #3ddc84" aria-hidden="true"></span>Radiologist</button>
+            <button type="button" data-m="ai" aria-pressed="false"><span class="k" style="background:rgba(255,77,109,.7)" aria-hidden="true"></span>AI model</button>
+            <button type="button" data-m="both" aria-pressed="false">Both</button>
+            <button type="button" data-m="sal" aria-pressed="false"><span class="k" style="background:linear-gradient(90deg,#e02000,#ffe14d)" aria-hidden="true"></span>Saliency</button>
+          </div>
+          <p class="ai-note">How I work: comparing model output against a reference read. Synthetic demonstration: simulated bleed, outlines and mask, not real data or a real model.</p>
+        </figcaption>
+      </figure>
+
+      <article class="tile t-stat live" style="--i:4">
+        <p class="tag mono">Quality improvement · TI-RADS</p>
+        <div class="stat-row">
+          <p class="big" aria-label="Compliance rose from 30% to 96%"><span aria-hidden="true">30<small>%</small></span><span class="arr" aria-hidden="true">→</span><span aria-hidden="true"><span id="count96" data-to="96">96</span><small>%</small></span><span class="cal" aria-hidden="true"><svg viewBox="0 0 100 14" preserveAspectRatio="none"><g stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke" fill="none"><line x1="8" y1="8" x2="92" y2="8" vector-effect="non-scaling-stroke"/><line x1="8" y1="3" x2="8" y2="13" vector-effect="non-scaling-stroke"/><line x1="92" y1="3" x2="92" y2="13" vector-effect="non-scaling-stroke"/></g></svg><em>Δ +66 pts</em></span></p>
+          <div class="bars" aria-hidden="true"><span style="--h:31%"></span><span id="bar96" style="--h:100%"></span></div>
+        </div>
+        <p class="lbl">Thyroid ultrasound reports scored to ACR TI-RADS, first audit to re-audit</p>
+      </article>
+
+      <article class="tile t-pubs live" style="--i:5">
+        <p class="tag mono">Publications</p>
+        <span class="corner" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <p class="big"><svg class="roi" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 2.5" vector-effect="non-scaling-stroke"/><path d="M20 0v4M20 36v4M0 20h4M36 20h4" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg><span id="count5" data-to="5">5</span></p>
+        <p>Publications, plus 2 submitted and presented</p>
+        <a class="cover" href="#publications" aria-label="Five publications. See the full list"></a>
+      </article>
+
+      <article class="tile t-awards live" style="--i:6">
+        <p class="tag mono">Recognition</p>
+        <ul>
+          <li><b>2026</b>Elected Resident, Department of Radiology, AKUH</li>
+          <li><b>2024</b>First Prize, AKU PGME Annual Conference</li>
+          <li><b>2022</b>Best Intern Award, Civil Hospital Karachi</li>
+        </ul>
+      </article>
+
+      <nav class="tile t-links live" style="--i:7" aria-label="Profiles">
+        <p class="tag mono">Elsewhere</p>
+        <ul>
+          <li><a href="https://www.linkedin.com/in/syed-mohammad-h-a5a453b0/" target="_blank" rel="me noopener">LinkedIn<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+          <li><a href="https://orcid.org/0000-0003-0324-5081" target="_blank" rel="me noopener">ORCID<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+          <li><a href="https://github.com/smhasan-yad" target="_blank" rel="me noopener">GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="block wrap" id="about" aria-labelledby="h-about">
+    <div class="shead">
+      <div>
+        <p class="kicker mono"><i style="--c:var(--lilac)" aria-hidden="true"></i>01 · About</p>
+        <h2 id="h-about">Two sides of imaging AI</h2>
+      </div>
+    </div>
+    <div class="about">
+      <div class="card statement live">
+        <p class="q">Much of my work is turning what radiologists need day to day into <em>requirements an engineering team can build against.</em></p>
+      </div>
+      <div class="card paper prose live">
+        <p>I am a third-year diagnostic radiology resident at Aga Khan University Hospital in Karachi. My days are spent reporting CT, MRI, ultrasound, fluoroscopy and nuclear medicine, including emergency on-call work.</p>
+        <p>Alongside residency I work on clinical AI for imaging. I set quality thresholds for training data, design validation studies and write documentation to regulatory standards.</p>
+        <p>Quality improvement came first. A thyroid ultrasound audit I led raised TI-RADS reporting compliance from 30% to 96%. In 2026 the resident body elected me as its representative. I write Python for imaging data and build small tools of my own.</p>
+      </div>
+      <div class="pillars">
+        <div class="card pillar pc-1 live"><span class="n">01</span><h3>Clinical</h3><p>Third-year diagnostic radiology resident (FCPS) at AKUH. GMC and PMDC registered.</p></div>
+        <div class="card pillar pc-2 live"><span class="n">02</span><h3>AI</h3><p>Designs validation studies, sets quality thresholds for imaging training data and writes regulatory-grade documentation.</p></div>
+        <div class="card pillar pc-3 live"><span class="n">03</span><h3>Evidence</h3><p>Closed-loop quality improvement (TI-RADS compliance 30% → 96%), five publications, elected resident representative.</p></div>
+      </div>
+    </div>
+    <div class="toolkit" aria-label="Skills">
+      <div class="card tool live"><h3>Imaging</h3><ul class="chips"><li>CT</li><li>MRI</li><li>Ultrasound</li><li>Fluoroscopy</li><li>Nuclear medicine</li><li>Interventional radiology</li><li>Emergency on-call reporting</li></ul></div>
+      <div class="card tool live"><h3>Validation</h3><ul class="chips"><li>Study design</li><li>Reference standards</li><li>Inter-reader agreement</li><li>Prespecified endpoints</li><li>Audit-ready records</li></ul></div>
+      <div class="card tool live"><h3>Data</h3><ul class="chips"><li>Training-data quality thresholds</li><li>De-identification</li><li>DICOM pipelines</li></ul></div>
+      <div class="card tool live"><h3>Quality &amp; teaching</h3><ul class="chips"><li>Closed-loop audits</li><li>Structured reporting templates</li><li>Workplace-based assessment</li><li>Mentorship design</li></ul></div>
+      <div class="card tool live"><h3>Code</h3><ul class="chips"><li>Python</li><li>PyTorch</li><li>DICOM</li><li>React</li><li>JavaScript</li><li>HTML/CSS</li><li>PowerShell</li></ul></div>
+    </div>
+  </section>
+
+  <!-- ================= WORK ================= -->
+  <section class="block wrap" id="work" aria-labelledby="h-work">
+    <div class="shead">
+      <div>
+        <p class="kicker mono"><i style="--c:var(--tomato)" aria-hidden="true"></i>02 · Work</p>
+        <h2 id="h-work">Selected projects</h2>
+      </div>
+      <p class="side">Research, quality improvement and tools. Images in this section are synthetic phantoms, not patient scans.</p>
+    </div>
+    <div class="work">
+      <article class="card proj w-ich live" id="p-ich">
+        <div class="txt">
+          <span class="status"><span class="pulse" aria-hidden="true"></span>Ongoing · research</span>
+          <h3>Deep learning for intracranial haemorrhage on head CT</h3>
+          <p>A single-centre evaluation of a deep learning model that detects and subtypes intracranial haemorrhage on non-contrast head CT. After an internal audit of the first analysis, I restarted the study with an integrity check on each model, one prespecified endpoint and a planned two-reader neuroradiology reference standard.</p>
+          <div class="meta"><span>Python</span><span>PyTorch</span><span>DICOM</span></div>
+          <button type="button" class="study-btn" data-study="ich" aria-haspopup="dialog">Read the study<span class="sr"> about intracranial haemorrhage</span></button>
+        </div>
+        <figure class="fig plate"><div class="frame"><canvas data-key="ich" width="400" height="400" role="img" aria-label="Synthetic phantom with a simulated hyperdense haemorrhage"></canvas><span class="ov ov-tl" aria-hidden="true">Synthetic</span><span class="ov ov-br" aria-hidden="true">No patient data</span><span class="or or-r" aria-hidden="true">R</span><span class="or or-l" aria-hidden="true">L</span></div></figure>
+      </article>
+
+      <article class="card proj w-mri live">
+        <span class="status">Planned · evidence synthesis</span>
+        <h3>Diagnostic accuracy of synthetic MRI</h3>
+        <p>A planned systematic review and meta-analysis. I have built a reproducible PubMed search pipeline that separates quantitative synthetic MRI from GAN-generated images, two meanings the term shares, so that screening starts from a clean evidence base.</p>
+        <figure class="fig plate"><div class="frame"><canvas data-key="mri" width="240" height="240" role="img" aria-label="The synthetic phantom shown with T2-weighted-style contrast"></canvas></div></figure>
+        <div class="meta"><span>Python</span><span>NCBI E-utilities</span></div>
+        <button type="button" class="study-btn" data-study="mri" aria-haspopup="dialog">Read the study<span class="sr"> about synthetic MRI</span></button>
+      </article>
+
+      <article class="card proj w-ti live">
+        <div class="txt">
+          <span class="status">2024 · quality improvement</span>
+          <h3>TI-RADS reporting audit: compliance from 30% to 96%</h3>
+          <p>First author on a closed-loop audit of ACR TI-RADS scoring in thyroid ultrasound reports. After department teaching and TI-RADS templates in PACS, the re-audit showed compliance rising from 30% to 96%. Posters at the 5th International RRF Conference and Health Asia 2024, Karachi.</p>
+          <button type="button" class="study-btn" data-study="ti" aria-haspopup="dialog">Read the study<span class="sr"> about the TI-RADS audit</span></button>
+        </div>
+        <figure class="fig plate"><div class="frame art"><svg class="ti-chart" viewBox="0 0 160 170" role="img" aria-label="Bar chart. TI-RADS scoring compliance: 30% at first audit, 96% at re-audit"><line x1="10" y1="140" x2="150" y2="140" class="ax"/><rect x="30" y="107" width="40" height="33" rx="5" class="b1"/><rect x="92" y="34" width="40" height="106" rx="5" class="b2"/><text x="50" y="98" font-size="20">30%</text><text x="112" y="25" font-size="20">96%</text><text x="50" y="158" class="l">Audit</text><text x="112" y="158" class="l">Re-audit</text></svg></div></figure>
+      </article>
+
+      <article class="card proj w-ment live">
+        <span class="status">2024 · health technology</span>
+        <h3>Mentisync</h3>
+        <p>An AI-enabled mentorship platform that connects radiology residents with local and international mentors. First Prize, AKU Postgraduate Medical Education Annual Conference 2024 ("Use of AI in PGME").</p>
+        <div class="meta"><span>React</span><span>JavaScript</span></div>
+        <button type="button" class="study-btn" data-study="ment" aria-haspopup="dialog">Read the study<span class="sr"> about Mentisync</span></button>
+        <figure class="fig plate"><div class="frame art"><svg class="proj-art" viewBox="0 0 220 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><g stroke-dasharray="3 3" opacity=".8"><path d="M40 28L110 50M40 50L110 50M40 72L110 50M110 50L180 30M110 50L180 72"/></g><g class="fl"><circle cx="40" cy="28" r="7"/><circle cx="40" cy="50" r="7"/><circle cx="40" cy="72" r="7"/></g><circle class="ac" cx="110" cy="50" r="10"/><g class="fl"><circle cx="180" cy="30" r="9"/><circle cx="180" cy="72" r="9"/></g><text x="40" y="94" font-size="9" fill="currentColor" stroke="none" text-anchor="middle" font-family="monospace">residents</text><text x="180" y="96" font-size="9" fill="currentColor" stroke="none" text-anchor="middle" font-family="monospace">mentors</text></svg></div></figure>
+      </article>
+
+      <article class="card proj w-cem live">
+        <span class="status">2024 · original research</span>
+        <h3>Contrast-enhanced mammography in breast cancer staging</h3>
+        <p>Diagnostic performance of CEM in presurgical staging, against histopathology, at a tertiary centre. Oral presentation at the International Radiology Resident Forum 2024; manuscript submitted.</p>
+        <button type="button" class="study-btn" data-study="cem" aria-haspopup="dialog">Read the study<span class="sr"> about contrast-enhanced mammography</span></button>
+        <figure class="fig plate"><div class="frame art"><svg class="proj-art" viewBox="0 0 120 120" role="img" aria-label="Schematic of a contrast-enhanced mammogram, craniocaudal view, with one enhancing lesion" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M18 14v92"/><path d="M18 18c52 2 86 20 86 42s-34 40-86 42" /><path d="M18 30c34 3 58 14 62 30" opacity=".35" stroke-dasharray="3 3"/><path d="M18 90c30-3 52-12 58-26" opacity=".35" stroke-dasharray="3 3"/><circle cx="66" cy="54" r="7" class="ac"/><circle cx="66" cy="54" r="13" stroke-dasharray="2 3" opacity=".7"/></svg></div></figure>
+      </article>
+
+      <article class="card proj w-back live">
+        <span class="status">Open source</span>
+        <h3>BackApp</h3>
+        <p>Plug-and-play automatic backup for Windows that starts when an external drive is connected. Native setup window, no background services, MIT licence.</p>
+        <div class="meta"><span>PowerShell</span></div>
+        <figure class="fig plate"><div class="frame art"><svg class="proj-art" viewBox="0 0 220 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><rect x="14" y="14" width="66" height="70" rx="4"/><g class="fl"><rect x="22" y="22" width="22" height="16" rx="1.5"/><rect x="50" y="22" width="22" height="16" rx="1.5"/><rect x="22" y="44" width="22" height="16" rx="1.5"/><rect x="50" y="44" width="22" height="16" rx="1.5"/></g><rect x="22" y="66" width="22" height="10" rx="1.5"/><path d="M88 50h44M124 43l8 7-8 7"/><rect class="ac" x="96" y="42" width="14" height="12" rx="1.5"/><rect x="144" y="26" width="62" height="48" rx="6"/><g class="fl"><rect x="152" y="34" width="20" height="14" rx="1.5"/><rect x="176" y="34" width="20" height="14" rx="1.5"/><rect x="152" y="52" width="20" height="14" rx="1.5"/></g><circle cx="196" cy="64" r="2.4" fill="currentColor"/></svg></div></figure>
+        <p><a class="src" href="https://github.com/smhasan-yad/BackApp" target="_blank" rel="noopener">Source on GitHub →</a></p>
+        <button type="button" class="study-btn" data-study="back" aria-haspopup="dialog">Read the study<span class="sr"> about BackApp</span></button>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= EXPERIENCE ================= -->
+  <section class="block wrap" id="experience" aria-labelledby="h-xp">
+    <div class="shead">
+      <div>
+        <p class="kicker mono"><i style="--c:var(--sky)" aria-hidden="true"></i>03 · Experience</p>
+        <h2 id="h-xp">Where I have worked</h2>
+      </div>
+    </div>
+    <ol class="xp">
+      <li class="card paper live">
+        <time style="--c:var(--indigo);--tc:var(--cream)">Jul 2026 – present</time>
+        <div class="body">
+          <h3>Clinical Research Collaborator (Radiology)</h3>
+          <p class="org">International AI medical-imaging initiative · remote</p>
+          <p>Quality thresholds for imaging training data, validation study design and regulatory-grade documentation; turning radiology workflow needs into technical requirements for engineering teams.</p>
+        </div>
+      </li>
+      <li class="card paper live has-logo" style="--logo:url(assets/logos/akuh-mark.svg)">
+        <time style="--c:var(--tomato)">Jan 2024 – present</time>
+        <div class="body">
+          <h3>Resident, Diagnostic Radiology (FCPS)</h3>
+          <p class="org">Aga Khan University Hospital, Karachi</p>
+          <p><b>Elected Resident, Jan – Jun 2026:</b> represented residents at Programme Director meetings, ran every resident rota, handled resident concerns and drafted the 2026 first-year orientation plan.</p>
+          <p>Teaching through journal clubs, case presentations and bedside sessions. My journal club on workplace-based assessment led the programme directors to plan WBA implementation.</p>
+        </div>
+      </li>
+      <li class="card paper live has-logo" style="--logo:url(assets/logos/siut-mask.png);--wm:.05">
+        <time style="--c:var(--mint)">May 2023 – Jan 2024</time>
+        <div class="body">
+          <h3>Resident Medical Officer, Nephrology &amp; Transplant</h3>
+          <p class="org">Sindh Institute of Urology and Transplantation, Karachi</p>
+        </div>
+      </li>
+      <li class="card paper live has-logo" style="--logo:url(assets/logos/chk-mask.png)">
+        <time style="--c:var(--butter)">May 2022 – May 2023</time>
+        <div class="body">
+          <h3>House Officer</h3>
+          <p class="org">Dr. Ruth K. M. Pfau Civil Hospital, Karachi</p>
+          <p>Medicine, medical ICU, nephrology, general surgery and neurosurgery. Best Intern Award, General Medicine.</p>
+        </div>
+      </li>
+      <li class="card paper live has-logo" style="--logo:url(assets/logos/duhs-mask.png)">
+        <time style="--c:var(--lilac)">2022</time>
+        <div class="body">
+          <h3>MBBS</h3>
+          <p class="org">Dow University of Health Sciences, Karachi</p>
+          <p>CGPA 3.88, top 10% of class; 4.0 GPA in the final year.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ================= PUBLICATIONS ================= -->
+  <section class="block wrap" id="publications" aria-labelledby="h-pub">
+    <div class="shead">
+      <div>
+        <p class="kicker mono"><i style="--c:var(--butter)" aria-hidden="true"></i>04 · Publications</p>
+        <h2 id="h-pub">Published work</h2>
+      </div>
+    </div>
+    <div class="pubs-wrap">
+      <div class="card paper">
+        <ol class="refs">
+          <li><div>Khandwala K, <b>Hasan SM</b>, Mateen SK, Nadeem N, Hilal K. The varying neuroradiological manifestations of paediatric dengue CNS infection: a pictorial review from Pakistan. <i>Pediatr Radiol.</i> 2026.<br><a href="https://doi.org/10.1007/s00247-026-06771-3" target="_blank" rel="noopener">doi:10.1007/s00247-026-06771-3</a></div></li>
+          <li><div><b>Hasan SM</b>, Zafar B. Prostate artery embolisation in a 64-year-old male with BPH: first case at AKUH. <i>Natl Radiol J Pak.</i> 2025;1(2). IRSP Annual Conference 2025, e-poster.</div></li>
+          <li><div>Hussain H, Zaidi SMF, <b>Hasan SM</b>, Jahan AS, Rangwala BS, Rangwala HS, et al. Revumenib (SNDX-5613): a promising menin inhibitor for relapsed/refractory AML. <i>Ann Med Surg.</i> 2024.<br><a href="https://doi.org/10.1097/MS9.0000000000001888" target="_blank" rel="noopener">doi:10.1097/MS9.0000000000001888</a></div></li>
+          <li><div>Zaidi SMF, Siddiq MA, Qamar S, <b>Hasan SM</b>, Zaidi SDZ, Kashif SM, et al. The hidden diagnosis: hypogonadotropic hypogonadism in a rare Fanconi syndrome case. <i>Int J Surg Glob Health.</i> 2023.<br><a href="https://doi.org/10.1097/GH9.0000000000000255" target="_blank" rel="noopener">doi:10.1097/GH9.0000000000000255</a></div></li>
+          <li><div>Ahmed Y, Khan AMH, Rao UJ, Shaukat F, Jamil A, <b>Hasan SM</b>, et al. Fertility preservation in radiation oncology: a narrative review. <i>ecancermedicalscience.</i> 2022.<br><a href="https://doi.org/10.3332/ecancer.2022.1461" target="_blank" rel="noopener">doi:10.3332/ecancer.2022.1461</a></div></li>
+        </ol>
+      </div>
+      <div class="side-stack">
+        <div class="card submitted live">
+          <h3>Submitted and presented</h3>
+          <ul>
+            <li>Afzal Saeed S, Mohsin F, Masroor I, <b>Hasan SM</b>, Vohra L. Diagnostic performance of contrast-enhanced mammography in the presurgical staging of breast cancer. Submitted. Oral presentation, International Radiology Resident Forum, 2024.</li>
+            <li>ACR TI-RADS reporting compliance audit. Posters, 5th International RRF Conference and Health Asia 2024, Karachi.</li>
+          </ul>
+        </div>
+        <div class="card orcid live">
+          <p class="mono" style="margin-bottom:10px">Full record</p>
+          <p>Every output, kept current on ORCID.</p>
+          <a class="btn" href="https://orcid.org/0000-0003-0324-5081" target="_blank" rel="noopener">ORCID 0000-0003-0324-5081</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CREDENTIALS ================= -->
+  <section class="block wrap" id="credentials" aria-labelledby="h-cred">
+    <div class="shead">
+      <div>
+        <p class="kicker mono"><i style="--c:var(--mint)" aria-hidden="true"></i>05 · Credentials</p>
+        <h2 id="h-cred">Registration and recognition</h2>
+      </div>
+    </div>
+    <div class="creds">
+      <div class="card cred c-1 live"><h3>Awards</h3><ul>
+        <li>Elected Resident, Department of Radiology, AKUH<small>2026</small></li>
+        <li>First Prize, AKU PGME Annual Conference<small>2024</small></li>
+        <li>Best Intern Award, Civil Hospital Karachi<small>2022</small></li></ul></div>
+      <div class="card cred c-2 live"><h3>Registration</h3><ul>
+        <li>General Medical Council, UK, via PLAB<small>2024</small></li>
+        <li>Pakistan Medical &amp; Dental Council<small>2022 – present</small></li></ul></div>
+      <div class="card cred c-3 live"><h3>Certification</h3><ul>
+        <li>Procedural Sedation &amp; Analgesia, AKUH<small>2024</small></li>
+        <li>Basic Life Support, AHA<small>2023</small></li></ul></div>
+      <div class="card cred c-4 live"><h3>Languages</h3><ul>
+        <li>English<small>IELTS Academic 8.0</small></li>
+        <li>Urdu<small>Native</small></li>
+        <li>French<small>Basic, DELF A1</small></li></ul></div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <div class="wrap">
+    <section class="contact" id="contact" aria-labelledby="h-contact">
+      <svg class="orbit" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#A9B8C6" stroke-width=".5"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="76"/><circle cx="100" cy="100" r="56"/><circle cx="100" cy="100" r="36"/></g></svg>
+      <div>
+        <p class="mono" style="margin-bottom:18px">06 · Contact</p>
+        <h2 id="h-contact">Let’s talk.</h2>
+        <p class="sub">Roles, research collaboration or fellowships.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-coral btn-mag" id="magbtn" href="mailto:smhasan.yad@gmail.com">Email smhasan.yad@gmail.com<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <ul>
+          <li><a href="https://www.linkedin.com/in/syed-mohammad-h-a5a453b0/" target="_blank" rel="me noopener">LinkedIn</a></li>
+          <li><a href="https://orcid.org/0000-0003-0324-5081" target="_blank" rel="me noopener">ORCID</a></li>
+          <li><a href="https://github.com/smhasan-yad" target="_blank" rel="me noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- ================= CASE-STUDY DRAWERS ================= -->
+<dialog class="study" id="study-ich" aria-labelledby="study-ich-t">
+  <div class="sheet">
+    <div class="rhead"><p>Report · Case study<br>Ongoing · research</p><button type="button" class="dlg-x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <h2 id="study-ich-t">Deep learning for intracranial haemorrhage on head CT</h2>
+      <h3>PROBLEM:</h3>
+      <p class="rb">I am evaluating a deep learning model that detects and subtypes intracranial haemorrhage on non-contrast head CT, at a single centre. An internal audit of the first analysis found that it could not be trusted.</p>
+      <h3>WHAT I DID:</h3>
+      <p class="rb">I restarted the study. Each model now passes an integrity check before use, and the study has one prespecified endpoint. The reference standard will be a planned two-reader neuroradiology read.</p>
+      <h3>STATUS:</h3>
+      <p class="rb">Ongoing.</p>
+    <p class="sig">Reported by S. M. Hasan · Radiology</p>
+  </div>
+</dialog>
+<dialog class="study" id="study-mri" aria-labelledby="study-mri-t">
+  <div class="sheet">
+    <div class="rhead"><p>Report · Case study<br>Planned · evidence synthesis</p><button type="button" class="dlg-x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <h2 id="study-mri-t">Diagnostic accuracy of synthetic MRI</h2>
+      <h3>PROBLEM:</h3>
+      <p class="rb">“Synthetic MRI” means two things: quantitative relaxometry and GAN-generated images. The shared term pollutes literature searches.</p>
+      <h3>WHAT I DID:</h3>
+      <p class="rb">I built a reproducible PubMed search pipeline in Python, using NCBI E-utilities, that separates the two meanings.</p>
+      <h3>STATUS:</h3>
+      <p class="rb">Planned systematic review and meta-analysis.</p>
+    <p class="sig">Reported by S. M. Hasan · Radiology</p>
+  </div>
+</dialog>
+<dialog class="study" id="study-ti" aria-labelledby="study-ti-t">
+  <div class="sheet">
+    <div class="rhead"><p>Report · Case study<br>2024 · quality improvement</p><button type="button" class="dlg-x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <h2 id="study-ti-t">TI-RADS reporting audit</h2>
+      <h3>PROBLEM:</h3>
+      <p class="rb">ACR TI-RADS scoring compliance in thyroid ultrasound reports was 30%.</p>
+      <h3>WHAT I DID:</h3>
+      <p class="rb">Departmental teaching, plus TI-RADS templates in PACS. I was first author on the closed-loop audit and re-audit.</p>
+      <h3>RESULT:</h3>
+      <p class="rb">Compliance reached 96% at re-audit. Posters at the 5th International RRF Conference and Health Asia 2024, Karachi.</p>
+    <p class="sig">Reported by S. M. Hasan · Radiology</p>
+  </div>
+</dialog>
+<dialog class="study" id="study-ment" aria-labelledby="study-ment-t">
+  <div class="sheet">
+    <div class="rhead"><p>Report · Case study<br>2024 · health technology</p><button type="button" class="dlg-x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <h2 id="study-ment-t">Mentisync</h2>
+      <h3>PROBLEM:</h3>
+      <p class="rb">Residents needed a structured way to find local and international mentors.</p>
+      <h3>WHAT I DID:</h3>
+      <p class="rb">I built an AI-enabled mentorship platform in React and JavaScript.</p>
+      <h3>RESULT:</h3>
+      <p class="rb">First Prize at the AKU PGME Annual Conference 2024 (“Use of AI in PGME”).</p>
+    <p class="sig">Reported by S. M. Hasan · Radiology</p>
+  </div>
+</dialog>
+<dialog class="study" id="study-cem" aria-labelledby="study-cem-t">
+  <div class="sheet">
+    <div class="rhead"><p>Report · Case study<br>2024 · original research</p><button type="button" class="dlg-x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <h2 id="study-cem-t">Contrast-enhanced mammography in breast cancer staging</h2>
+      <h3>PROBLEM:</h3>
+      <p class="rb">How well does contrast-enhanced mammography perform in presurgical breast cancer staging?</p>
+      <h3>WHAT I DID:</h3>
+      <p class="rb">I assessed the diagnostic performance of contrast-enhanced mammography in presurgical staging, against histopathology, at a tertiary centre.</p>
+      <h3>RESULT:</h3>
+      <p class="rb">Oral presentation at the International Radiology Resident Forum 2024. Manuscript submitted.</p>
+    <p class="sig">Reported by S. M. Hasan · Radiology</p>
+  </div>
+</dialog>
+<dialog class="study" id="study-back" aria-labelledby="study-back-t">
+  <div class="sheet">
+    <div class="rhead"><p>Report · Case study<br>Open source</p><button type="button" class="dlg-x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <h2 id="study-back-t">BackApp</h2>
+      <h3>PROBLEM:</h3>
+      <p class="rb">I needed backups without background services or cloud lock-in.</p>
+      <h3>WHAT I DID:</h3>
+      <p class="rb">I built a plug-and-play PowerShell tool with a native setup window. It backs up when an external drive is connected.</p>
+      <h3>RESULT:</h3>
+      <p class="rb">Released under the MIT licence. <a href="https://github.com/smhasan-yad/BackApp" target="_blank" rel="noopener">Source on GitHub</a>.</p>
+    <p class="sig">Reported by S. M. Hasan · Radiology</p>
+  </div>
+</dialog>
+
+<footer class="wrap fine">
+  <p>© 2026 Syed Mohammad Hasan, MBBS · Karachi, Pakistan</p>
+  <p>All images are synthetic, procedurally generated phantoms. No patient data.</p>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* ---- nav border on scroll ---- */
+  var nav = document.querySelector('.nav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* ---- lights on / lights off ---- */
+  var root = document.documentElement, lights = document.getElementById('lights');
+  var themeMeta = document.querySelector('meta[name="theme-color"]'), themeTimer;
+  function setTheme(t, animate){
+    if (animate && !reduce){
+      root.classList.add('theming'); clearTimeout(themeTimer);
+      themeTimer = setTimeout(function(){ root.classList.remove('theming'); }, 300);
+    }
+    root.setAttribute('data-theme', t);
+    lights.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
+    if (themeMeta) themeMeta.setAttribute('content', t === 'dark' ? '#0b0f13' : '#F3F7FA');
+  }
+  setTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
+  lights.addEventListener('click', function(){
+    var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('lightbox-theme', t); } catch (e) {}
+    setTheme(t, true);
+  });
+  if (!reduce){
+    setInterval(function(){
+      if (document.hidden || root.getAttribute('data-theme') === 'dark') return;
+      var ts = [].filter.call(document.querySelectorAll('.tile'), function(el){ var r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; });
+      if (!ts.length) return;
+      var el = ts[Math.floor(Math.random() * ts.length)];
+      el.classList.remove('buzz'); void el.offsetWidth; el.classList.add('buzz');
+    }, 25000);
+  }
+  var darkMq = window.matchMedia('(prefers-color-scheme: dark)');
+  function onSchemeChange(e){
+    var saved = null; try { saved = localStorage.getItem('lightbox-theme'); } catch (err) {}
+    if (saved !== 'dark' && saved !== 'light') setTheme(e.matches ? 'dark' : 'light', true);
+  }
+  if (darkMq.addEventListener) darkMq.addEventListener('change', onSchemeChange); else if (darkMq.addListener) darkMq.addListener(onSchemeChange);
+
+  /* ---- hanging protocol: highlight the series in view ---- */
+  var strip = document.querySelector('.series-strip');
+  var seriesLinks = {};
+  strip.querySelectorAll('a.series').forEach(function(a){ seriesLinks[a.getAttribute('href').slice(1)] = a; });
+  function markSeries(id){
+    Object.keys(seriesLinks).forEach(function(k){
+      if (k === id) seriesLinks[k].setAttribute('aria-current', 'true'); else seriesLinks[k].removeAttribute('aria-current');
+    });
+    var a = seriesLinks[id];
+    if (a && strip.scrollWidth > strip.clientWidth + 1){
+      var li = a.parentNode, target = li.offsetLeft - (strip.clientWidth - li.offsetWidth) / 2;
+      try { strip.scrollTo({left: Math.max(0, target), behavior: reduce ? 'auto' : 'smooth'}); } catch (e) { strip.scrollLeft = Math.max(0, target); }
+    }
+  }
+  if ('IntersectionObserver' in window){
+    var seriesIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var id = en.target.id;
+        if (en.isIntersecting) markSeries(id);
+        else if (id === 'about' && en.boundingClientRect.top > 0) markSeries(null); /* back up in the hero */
+      });
+    }, {rootMargin: '-35% 0px -60% 0px'});
+    Object.keys(seriesLinks).forEach(function(id){ var s = document.getElementById(id); if (s) seriesIO.observe(s); });
+  }
+
+  /* ---- tilt + pointer light ---- */
+  document.querySelectorAll('.live').forEach(function(el){
+    el.addEventListener('pointermove', function(e){
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      el.style.setProperty('--mx', (x*100)+'%'); el.style.setProperty('--my', (y*100)+'%');
+      if (!reduce && finePointer){
+        var k = el.classList.contains('card') ? 2.2 : 4;
+        el.style.setProperty('--rx', ((0.5 - y) * k).toFixed(2)+'deg');
+        el.style.setProperty('--ry', ((x - 0.5) * k).toFixed(2)+'deg');
+      }
+    });
+    el.addEventListener('pointerleave', function(){ el.style.setProperty('--rx','0deg'); el.style.setProperty('--ry','0deg'); });
+  });
+
+  /* ---- count-up ---- */
+  function countUp(el, from, to, ms){
+    if (reduce){ el.textContent = to; return; }
+    var t0 = performance.now();
+    function step(t){
+      var p = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(from + (to - from) * e);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var c96 = document.getElementById('count96'), b96 = document.getElementById('bar96'), c5 = document.getElementById('count5');
+  function playStat(){
+    countUp(c96, 30, 96, 1300);
+    if (!reduce){ b96.style.transition='none'; b96.style.transform='scaleY(.31)'; b96.getBoundingClientRect(); b96.style.transition=''; b96.style.transform='scaleY(1)'; }
+  }
+  function playPubs(){ countUp(c5, 0, 5, 900); }
+  setTimeout(function(){ playStat(); playPubs(); }, reduce ? 0 : 450);
+  document.querySelector('.t-stat').addEventListener('pointerenter', playStat);
+  document.querySelector('.t-pubs').addEventListener('pointerenter', playPubs);
+
+  /* ---- synthetic phantom ---- */
+  function hash(x, y){
+    var h = Math.imul(x, 374761393) + Math.imul(y, 668265263) | 0;
+    h = Math.imul(h ^ (h >>> 13), 1274126177);
+    return ((h ^ (h >>> 16)) >>> 0) / 4294967295;
+  }
+  function vnoise(x, y){
+    var xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+    var u = xf*xf*(3-2*xf), v = yf*yf*(3-2*yf);
+    var a = hash(xi,yi), b = hash(xi+1,yi), c = hash(xi,yi+1), d = hash(xi+1,yi+1);
+    return a + (b-a)*u + (c-a)*v + (a-b-c+d)*u*v;
+  }
+  function fbm(x, y){ return vnoise(x,y)*.55 + vnoise(x*2.1,y*2.1)*.3 + vnoise(x*4.3,y*4.3)*.15; }
+  // tissue codes: 0 air, 1 scalp, 2 bone, 3 grey, 4 white, 5 csf, 6 blood
+  var HU = [-1000, 45, 1100, 38, 27, 6, 72, 18];
+  var T2 = [0, .74, .07, .6, .4, .97, .3, .82];
+  var T1 = [0, .82, .1, .42, .62, .12, .55, .16];
+  function tissue(x, y, z, ich){
+    var k = 0.8 + 0.2 * Math.sqrt(Math.max(0, 1 - z*z*1.8));
+    var ax = 0.74*k, ay = 0.9*k;
+    var d = Math.sqrt((x/ax)*(x/ax) + ((y+0.02)/ay)*((y+0.02)/ay));
+    if (d > 1.07) return 0;
+    if (d > 1.0) return 1;
+    if (d > 0.92 + 0.012*vnoise(x*9, y*9)) return 2;
+    if (ich){
+      var R = ich === true ? 0.13 : ich;
+      var bx = x - 0.36, by = y + 0.16;
+      var bd = Math.sqrt(bx*bx*1.6 + by*by) - 0.035*fbm(x*8+3, y*8);
+      if (bd < R && d < 0.9) return 6;
+    }
+    var vk = Math.max(0, 1 - Math.abs(z) * 1.5);
+    if (vk > 0){
+      for (var s = -1; s <= 1; s += 2){
+        var cx = x - s*0.12, cy = y + 0.04;
+        var ca = Math.cos(s*0.3), sa = Math.sin(s*0.3);
+        var rx = cx*ca - cy*sa, ry = cx*sa + cy*ca;
+        var q = (rx/(0.055*vk + .01))*(rx/(0.055*vk + .01)) + (ry/(0.24*vk + .02))*(ry/(0.24*vk + .02));
+        if (q < 1) return 5;
+      }
+    }
+    if (Math.abs(x) < 0.011 && Math.abs(y) > 0.3 && d < 0.92) return 5;
+    var g = fbm(x*6.5 + 11, y*6.5 + z*3);
+    if (d > 0.88 && g < 0.46) return 7;
+    if (d > 0.62 && Math.abs(g - 0.5) < 0.018) return 7;
+    if (d < 0.7 - 0.2*g && Math.abs(x) > 0.035) return 4;
+    return 3;
+  }
+  function render(target, n, z, opts){
+    var off = render.c || (render.c = document.createElement('canvas'));
+    off.width = n; off.height = n;
+    var ctx = off.getContext('2d');
+    var img = ctx.createImageData(n, n), p = img.data, i = 0;
+    var lo = opts.l - opts.w/2, w = opts.w;
+    for (var py = 0; py < n; py++){
+      for (var px = 0; px < n; px++, i += 4){
+        var x = (px + .5) / n * 2 - 1, y = (py + .5) / n * 2 - 1;
+        var t = tissue(x, y, z, opts.ich), v;
+        var nz = hash(px + opts.seed, py + 977) - .5;
+        if (opts.t2){ v = t === 0 ? 0 : (opts.t1 ? T1 : T2)[t] + nz*0.06; }
+        else { v = ((HU[t] + nz*7) - lo) / w; }
+        v = v < 0 ? 0 : v > 1 ? 1 : v;
+        var c = v * 255;
+        p[i] = c; p[i+1] = c; p[i+2] = c; p[i+3] = 255;
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+    var T = target.canvas;
+    target.imageSmoothingEnabled = true; target.imageSmoothingQuality = 'high';
+    target.clearRect(0, 0, T.width, T.height);
+    target.drawImage(off, 0, 0, T.width, T.height);
+  }
+
+  /* main viewer */
+  var cv = document.getElementById('scan'), ctx = cv.getContext('2d');
+  var N = 240, W = 80, L = 40, t0 = performance.now(), visible = true, last = 0, z = 0, seed = 0;
+  var wlOut = document.getElementById('wl'), sliceOut = document.getElementById('slice'), wlOv = document.getElementById('wlov');
+  var presets = document.querySelectorAll('.presets button');
+  var mode = 'img', paused = reduce, trace = 1, lut = document.getElementById('lut'), scout = document.getElementById('scout'), sctx = scout.getContext('2d'), playBtn = document.getElementById('playbtn'), aiov = document.getElementById('aiov'), segs = document.querySelectorAll('.segs button');
+  function bleedR(z){ var q = 1 - (z/0.3)*(z/0.3); return q > 0.12 ? 0.13*Math.sqrt(q) : 0; }
+  function contour(R, scale, ox, oy){
+    var pts = [], n = 72, k = Math.sqrt(1.6);
+    for (var a = 0; a < n; a++){
+      var th = a/n*Math.PI*2, cx = Math.cos(th)/k, cy = Math.sin(th), last = 0;
+      for (var s = 0; s < R + 0.05; s += 0.003){
+        var x = 0.36 + s*cx, y = -0.16 + s*cy;
+        if (s - 0.035*fbm(x*8+3, y*8) < R) last = s;
+      }
+      last *= scale;
+      pts.push([0.36 + ox + last*cx, -0.16 + oy + last*cy]);
+    }
+    return pts;
+  }
+  function path(c, pts, S, f){
+    var m = f == null || f >= 1 ? pts.length : Math.max(2, Math.ceil(pts.length * f));
+    c.beginPath();
+    for (var i = 0; i < m; i++){ var X = (pts[i][0]+1)/2*S, Y = (pts[i][1]+1)/2*S; i ? c.lineTo(X, Y) : c.moveTo(X, Y); }
+    if (m === pts.length) c.closePath();
+  }
+  function saliency(S){
+    var cx = (0.36+1)/2*S, cy = (-0.16+1)/2*S, r = 0.3*S;
+    ctx.save(); ctx.translate(cx, cy); ctx.scale(1/Math.sqrt(1.6), 1);
+    var g = ctx.createRadialGradient(0, 0, 0, 0, 0, r);
+    g.addColorStop(0, 'rgba(255,255,230,.95)'); g.addColorStop(.18, 'rgba(255,225,77,.92)'); g.addColorStop(.38, 'rgba(255,154,0,.8)');
+    g.addColorStop(.62, 'rgba(224,32,0,.55)'); g.addColorStop(.85, 'rgba(122,0,0,.2)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.globalAlpha = 0.55 * trace; ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+  var scoutBase = null;
+  function drawScout(){
+    var S = scout.width;
+    if (!scoutBase){
+      scoutBase = document.createElement('canvas'); scoutBase.width = scoutBase.height = S;
+      var b = scoutBase.getContext('2d');
+      b.fillStyle = '#000'; b.fillRect(0, 0, S, S);
+      b.fillStyle = '#5b6670'; b.beginPath(); b.ellipse(S*.5, S*.47, S*.36, S*.4, 0, 0, Math.PI*2); b.fill();
+      b.fillStyle = '#9aa6b0'; b.beginPath(); b.ellipse(S*.5, S*.47, S*.33, S*.37, 0, 0, Math.PI*2); b.fill();
+      b.fillStyle = '#3a444d'; b.beginPath(); b.ellipse(S*.52, S*.45, S*.3, S*.33, 0, 0, Math.PI*2); b.fill();
+      b.fillStyle = '#5b6670'; b.fillRect(S*.42, S*.8, S*.16, S*.2);
+      b.fillStyle = '#4a545d'; b.beginPath(); b.ellipse(S*.16, S*.6, S*.07, S*.12, 0, 0, Math.PI*2); b.fill();
+    }
+    sctx.drawImage(scoutBase, 0, 0);
+    var y = S*(0.47 - z/0.55*0.32);
+    sctx.strokeStyle = '#F5C518'; sctx.lineWidth = 2; sctx.beginPath(); sctx.moveTo(S*.08, y); sctx.lineTo(S*.92, y); sctx.stroke();
+  }
+  function overlay(){
+    lut.hidden = mode !== 'sal';
+    if (mode === 'img'){ aiov.hidden = true; return; }
+    var R = bleedR(z), S = cv.width;
+    aiov.hidden = false;
+    if (mode === 'sal'){ saliency(S); aiov.textContent = 'Model attention · illustrative'; return; }
+    if (!R){ aiov.textContent = 'No lesion on this slice'; return; }
+    if (mode === 'ai' || mode === 'both'){
+      path(ctx, contour(R, 1.16, 0.022, 0.018), S, trace);
+      if (trace >= 1){ ctx.fillStyle = 'rgba(255,77,109,.4)'; ctx.fill(); }
+      ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(255,77,109,.85)'; ctx.stroke();
+    }
+    if (mode === 'rad' || mode === 'both'){
+      path(ctx, contour(R, 1, 0, 0), S, trace);
+      ctx.lineWidth = 1.6; ctx.strokeStyle = '#3ddc84'; ctx.stroke();
+    }
+    aiov.textContent = 'Paused on lesion slice\n' + (mode === 'both' ? 'Dice 0.86 (illustrative)' : mode === 'rad' ? 'Reference read · synthetic' : 'Model mask · simulated');
+  }
+  function draw(acq){
+    render(ctx, N, z, {w:W, l:L, seed:seed, ich:bleedR(z)}); overlay(); drawScout();
+    if (acq != null){
+      var S = cv.width, y = acq * S;
+      var g = ctx.createLinearGradient(0, y - 14, 0, y);
+      g.addColorStop(0, 'rgba(185,215,240,0)'); g.addColorStop(1, 'rgba(185,215,240,.10)');
+      ctx.fillStyle = g; ctx.fillRect(0, y - 14, S, 14);
+      ctx.fillStyle = 'rgba(205,230,250,.32)'; ctx.fillRect(0, y, S, 1);
+    }
+  }
+  function traceIn(){
+    if (reduce){ trace = 1; draw(); return; }
+    var s0 = performance.now();
+    (function step(t){ trace = Math.min(1, Math.max(0, (t - s0) / 500)); draw(); if (trace < 1) requestAnimationFrame(step); })(s0);
+  }
+  segs.forEach(function(b){
+    b.addEventListener('click', function(){
+      mode = b.dataset.m;
+      if (mode !== 'img') { z = 0; sliceOut.textContent = 'Se 2 · Im 20/40'; }
+      segs.forEach(function(o){ o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      if (mode === 'img') { trace = 1; draw(); } else traceIn();
+    });
+  });
+  function updWL(){
+    wlOut.textContent = wlOv.textContent = 'W ' + Math.round(W) + ' · L ' + Math.round(L);
+    presets.forEach(function(b){ b.setAttribute('aria-pressed', (+b.dataset.w === Math.round(W) && +b.dataset.l === Math.round(L)) ? 'true' : 'false'); });
+  }
+  function loop(t){
+    if (visible && !paused && mode === 'img' && t - last > 70){
+      last = t;
+      var ph = (t - t0) / 1000 * 0.32;
+      z = 0.55 * Math.sin(ph);
+      seed = (seed + 131) % 100000;
+      sliceOut.textContent = 'Se 2 · Im ' + Math.round(20 + z/0.55*18) + '/40';
+      draw(((t - t0) / 1400) % 1);
+    }
+    requestAnimationFrame(loop);
+  }
+  function setPaused(p){
+    paused = p; playBtn.setAttribute('data-paused', p ? 'true' : 'false'); playBtn.setAttribute('aria-label', p ? 'Play scan' : 'Pause scan');
+    if (!p){
+      if (mode !== 'img'){ mode = 'img'; trace = 1; segs.forEach(function(o){ o.setAttribute('aria-pressed', o.dataset.m === 'img' ? 'true' : 'false'); }); }
+      t0 = performance.now() - Math.asin(Math.max(-1, Math.min(1, z/0.55))) / 0.32 * 1000;
+    }
+    else draw();
+  }
+  playBtn.addEventListener('click', function(){ setPaused(!paused); });
+  setPaused(paused);
+  draw();
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ visible = es[0].isIntersecting; }).observe(cv);
+  }
+  requestAnimationFrame(loop);
+  var viewer = document.getElementById('viewer'), drag = null;
+  viewer.addEventListener('pointerdown', function(e){ if (e.target.closest('button, a')) return; drag = {x:e.clientX, y:e.clientY, w:W, l:L}; viewer.setPointerCapture(e.pointerId); });
+  viewer.addEventListener('pointermove', function(e){
+    if (!drag) return;
+    W = Math.max(20, Math.min(3000, drag.w + (e.clientX - drag.x) * 2));
+    L = Math.max(-200, Math.min(800, drag.l - (e.clientY - drag.y)));
+    updWL(); draw();
+  });
+  ['pointerup','pointercancel'].forEach(function(ev){ viewer.addEventListener(ev, function(){ drag = null; }); });
+  viewer.addEventListener('keydown', function(e){
+    var used = true;
+    if (e.key === 'ArrowRight') W = Math.min(3000, W + 10);
+    else if (e.key === 'ArrowLeft') W = Math.max(20, W - 10);
+    else if (e.key === 'ArrowUp') L = Math.min(800, L + 5);
+    else if (e.key === 'ArrowDown') L = Math.max(-200, L - 5);
+    else used = false;
+    if (used){ e.preventDefault(); updWL(); draw(); }
+  });
+  presets.forEach(function(b){
+    b.addEventListener('click', function(){ W = +b.dataset.w; L = +b.dataset.l; updWL(); draw(); });
+  });
+
+  /* project figures */
+  document.querySelectorAll('canvas[data-key]').forEach(function(c){
+    var x = c.getContext('2d');
+    var card = c.closest('.proj'), cap = c.closest('figure') && c.closest('figure').querySelector('figcaption');
+    if (c.dataset.key === 'ich'){
+      var ichAt = function(z){ render(x, 200, z, {w:80, l:40, ich:true, seed:7}); };
+      ichAt(0.12);
+      c.addEventListener('pointermove', function(e){
+        var r = c.getBoundingClientRect(), u = (e.clientX - r.left) / r.width;
+        ichAt(-0.45 + 0.9 * Math.min(1, Math.max(0, u)));
+      });
+      c.addEventListener('pointerleave', function(){ ichAt(0.12); });
+    } else {
+      var mri = function(t1){
+        render(x, 160, 0.05, {t2:true, t1:t1, seed:3});
+        if (cap) cap.textContent = 'Synthetic phantom, ' + (t1 ? 'T1' : 'T2') + '-style contrast';
+      };
+      mri(false);
+      if (card){
+        card.addEventListener('pointerenter', function(){ mri(true); });
+        card.addEventListener('pointerleave', function(){ mri(false); });
+        card.addEventListener('focusin', function(){ mri(true); });
+        card.addEventListener('focusout', function(){ mri(false); });
+      }
+    }
+  });
+
+  /* ---- HU probe (fine pointer only, decorative) ---- */
+  var probe = document.getElementById('probe');
+  var TNAME = ['air', 'scalp', 'bone', 'grey matter', 'white matter', 'CSF', 'blood', 'sulcal CSF'];
+  if (probe && finePointer){
+    cv.addEventListener('pointermove', function(e){
+      if (drag || e.pointerType !== 'mouse'){ probe.hidden = true; return; }
+      var r = cv.getBoundingClientRect(), fr = cv.parentNode.getBoundingClientRect();
+      var u = (e.clientX - r.left) / r.width, v = (e.clientY - r.top) / r.height;
+      if (u < 0 || u > 1 || v < 0 || v > 1){ probe.hidden = true; return; }
+      var t = tissue(u * 2 - 1, v * 2 - 1, z, bleedR(z));
+      probe.textContent = 'HU ' + HU[t] + ' · ' + TNAME[t];
+      probe.hidden = false;
+      var px = e.clientX - fr.left, py = e.clientY - fr.top;
+      var pw = probe.offsetWidth, ph = probe.offsetHeight;
+      var lx = px + 14 + pw > fr.width ? px - 14 - pw : px + 14;
+      var ly = py + 14 + ph > fr.height ? py - 14 - ph : py + 14;
+      probe.style.transform = 'translate(' + Math.round(lx) + 'px,' + Math.round(ly) + 'px)';
+    });
+    cv.addEventListener('pointerleave', function(){ probe.hidden = true; });
+    viewer.addEventListener('pointerdown', function(){ probe.hidden = true; });
+  }
+
+  /* ---- first-visit loader: slice counter, then tiles switch on ---- */
+  if (root.classList.contains('boot-on')){
+    var bootN = document.getElementById('boot-n'), bootBar = document.getElementById('boot-bar'), b0 = performance.now();
+    (function bstep(t){
+      var p = Math.min(1, (t - b0) / 900);
+      bootN.textContent = 'Acquiring · Im ' + Math.round(p * 40) + '/40';
+      bootBar.style.setProperty('--p', p.toFixed(3));
+      if (p < 1) requestAnimationFrame(bstep);
+    })(b0);
+    setTimeout(function(){ root.classList.add('boot-fade', 'switch-on'); }, 1000);
+    setTimeout(function(){ root.classList.remove('boot-on', 'boot-fade'); }, 1360);
+  }
+  var bootDelay = root.classList.contains('boot-on') ? 1100 : 0;
+
+  /* ---- callipers and ROI circles draw themselves ---- */
+  if (!reduce && 'IntersectionObserver' in window){
+    var drawIO = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if (!en.isIntersecting) return;
+        var svg = en.target; drawIO.unobserve(svg);
+        setTimeout(function(){
+          svg.getBoundingClientRect(); svg.classList.add('draw-go');
+          setTimeout(function(){
+            svg.classList.remove('draw-pre', 'draw-go');
+            svg.querySelectorAll('[pathLength]').forEach(function(s){ s.removeAttribute('pathLength'); });
+          }, 1000);
+        }, bootDelay + 120);
+      });
+    }, {threshold: 0.6});
+    document.querySelectorAll('.cal svg, svg.roi').forEach(function(svg){
+      svg.querySelectorAll('line, circle, path').forEach(function(s){ s.setAttribute('pathLength', '100'); });
+      svg.classList.add('draw-pre'); drawIO.observe(svg);
+    });
+  }
+
+  /* ---- case-study drawers ---- */
+  var openerBtn = null;
+  document.querySelectorAll('.study-btn').forEach(function(btn){
+    var dlg = document.getElementById('study-' + btn.dataset.study);
+    if (!dlg || typeof dlg.showModal !== 'function'){ btn.hidden = true; return; }
+    btn.addEventListener('click', function(){
+      openerBtn = btn; root.classList.add('scroll-lock'); dlg.showModal();
+      var x = dlg.querySelector('.dlg-x'); if (x) x.focus();
+    });
+  });
+  document.querySelectorAll('dialog.study').forEach(function(dlg){
+    dlg.querySelector('.dlg-x').addEventListener('click', function(){ dlg.close(); });
+    dlg.addEventListener('click', function(e){ if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', function(){
+      root.classList.remove('scroll-lock');
+      if (openerBtn){ openerBtn.focus(); openerBtn = null; }
+    });
+  });
+
+  /* ---- magnetic email button ---- */
+  var mag = document.getElementById('magbtn'), contactEl = document.getElementById('contact');
+  if (mag && contactEl && finePointer && !reduce){
+    contactEl.addEventListener('pointermove', function(e){
+      var r = mag.getBoundingClientRect();
+      var dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+      var d = Math.sqrt(dx * dx + dy * dy), reach = Math.max(r.width, r.height) * 0.9;
+      if (d > reach){ mag.style.translate = '0 0'; return; }
+      var k = 8 * (1 - d / reach) / (d || 1);
+      mag.style.translate = (dx * k).toFixed(1) + 'px ' + (dy * k).toFixed(1) + 'px';
+    });
+    contactEl.addEventListener('pointerleave', function(){ mag.style.translate = '0 0'; });
+  }
+})();
+</script>
+</body>
+</html>
