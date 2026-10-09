@@ -6,7 +6,7 @@
 <title>Syed Mohammad Hasan | Radiology & Clinical AI</title>
 <meta name="description" content="Syed Mohammad Hasan, MBBS. Diagnostic radiology resident at Aga Khan University Hospital working on clinical AI validation, imaging data quality and quality improvement.">
 <meta name="author" content="Syed Mohammad Hasan">
-<meta name="theme-color" content="#F3F7FA">
+<meta name="theme-color" content="#F2F1EE">
 <script>
 (function(){
   var t = null;
@@ -15,7 +15,7 @@
     t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
   }
   document.documentElement.setAttribute('data-theme', t);
-  if (t === 'dark') { var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', '#0b0f13'); }
+  if (t === 'dark') { var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', '#121316'); }
 })();
 (function(){
   /* first-visit loader: only when motion is allowed and not yet shown this session */
@@ -27,12 +27,12 @@
   setTimeout(function(){ d.classList.remove('boot-on'); d.classList.add('boot-done'); }, 1400); /* failsafe */
 })();
 </script>
-<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/fonts/fonts.css?v=1791582721">
 <style>
 :root{
   color-scheme: light;
   /* lightbox */
-  --box:#F3F7FA;
+  --box:#F2F1EE;
   --glow:#D6E6F3;
   --seam:rgba(60,90,120,.07);
   /* film tints */
@@ -57,9 +57,9 @@
   --r-lg:5px;
   --r-md:4px;
   --gap:14px;
-  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
-  --mono:"Martian Mono", ui-monospace, Consolas, monospace;
+  --display:"Archivo", "Segoe UI", system-ui, sans-serif;
+  --body:"Inter", "Segoe UI", system-ui, sans-serif;
+  --mono:"Geist Mono", ui-monospace, Consolas, monospace;
   --shadow:inset 0 0 0 1px var(--film-edge), 0 1px 2px rgba(20,32,41,.08), 0 12px 24px -14px rgba(20,32,41,.30);
   --shadow-up:inset 0 0 0 1px var(--film-edge), 0 2px 4px rgba(20,32,41,.08), 0 22px 38px -20px rgba(20,32,41,.38);
   /* theme tokens */
@@ -78,7 +78,7 @@
 /* lights off: dark reading room */
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --box:#0b0f13;--glow:#121a22;--glow-2:rgba(30,44,58,.35);--seam:rgba(230,237,243,.035);
+  --box:#121316;--glow:#121a22;--glow-2:rgba(30,44,58,.35);--seam:rgba(230,237,243,.035);
   --film-0:#1a232c;--film-1:#1e2832;--film-2:#222d38;--film-3:#11181f;--film-x:#070b0f;
   --ink:#E6EDF3;--ink-2:#A9B8C6;--ink-mid:#C4D0DB;
   --line:rgba(230,237,243,.12);--film-edge:rgba(230,237,243,.09);
@@ -90,7 +90,7 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --box:#0b0f13;--glow:#121a22;--glow-2:rgba(30,44,58,.35);--seam:rgba(230,237,243,.035);
+    --box:#121316;--glow:#121a22;--glow-2:rgba(30,44,58,.35);--seam:rgba(230,237,243,.035);
     --film-0:#1a232c;--film-1:#1e2832;--film-2:#222d38;--film-3:#11181f;--film-x:#070b0f;
     --ink:#E6EDF3;--ink-2:#A9B8C6;--ink-mid:#C4D0DB;
     --line:rgba(230,237,243,.12);--film-edge:rgba(230,237,243,.09);
@@ -215,7 +215,6 @@ p{margin:0}
 .t-intro .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;align-items:center}
 .btn-ghost{color:var(--on-dense);box-shadow:inset 0 0 0 1.5px rgba(230,237,243,.4)}
 .btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--on-dense)}
-.t-intro .orbit{position:absolute;right:-120px;top:-120px;width:380px;height:380px;z-index:-1;opacity:.35;pointer-events:none}
 
 .t-photo{grid-area:photo;background:var(--film-1);align-items:center;justify-content:center;padding:18px;padding-top:24px}
 .t-photo .ring{position:relative;width:min(100%, 172px);aspect-ratio:1;border-radius:50%;padding:6px;background:conic-gradient(from 210deg, var(--film-3) 0 25%, transparent 25% 100%);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
@@ -448,7 +447,6 @@ section.block{padding-top:96px}
 .contact ul{list-style:none;padding:0;margin:8px 0 0;display:flex;gap:8px;flex-wrap:wrap}
 .contact ul a{display:inline-block;padding:10px 16px;border-radius:4px;text-decoration:none;font-weight:600;box-shadow:inset 0 0 0 1.5px rgba(230,237,243,.4)}
 .contact ul a:hover{background:var(--accent);color:var(--on-accent);box-shadow:none}
-.contact .orbit{position:absolute;left:-160px;bottom:-200px;width:520px;opacity:.3;pointer-events:none}
 footer.fine{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:24px 4px 40px;color:var(--ink-2);font-size:13.5px}
 
 /* ---------- responsive ---------- */
@@ -504,7 +502,6 @@ footer.fine{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;p
   .t-now .tag,.t-pubs .tag{padding-right:0}
   .t-intro{padding:30px 24px 28px}
   .t-intro h1{font-size:clamp(40px,11.5vw,56px);margin-top:28px}
-  .t-intro .orbit{width:260px;height:260px;right:-100px;top:-100px}
   .t-photo{min-height:200px}
   .t-photo .ring{width:min(100%,128px)}
   .t-now{min-height:200px}
@@ -666,45 +663,15 @@ dialog.study::backdrop{background:rgba(7,11,15,.62)}
 
 
 /* faulty lightbox: tube power-on flicker, cool-down afterglow, occasional buzz */
-.tube{position:fixed;inset:0;pointer-events:none;z-index:999;opacity:0;background:#0b0f13}
-.tube.on{animation:tube-on 1s steps(1,end) forwards}
-.tube.off{background:#dfe9f2;animation:tube-off .8s ease-out forwards}
-@keyframes tube-on{0%{opacity:1}7%{opacity:.12}11%{opacity:1}21%{opacity:.4}25%{opacity:.9}37%{opacity:.08}43%{opacity:.6}52%{opacity:0}61%{opacity:.22}65%{opacity:0}100%{opacity:0}}
-@keyframes tube-off{0%{opacity:.25}100%{opacity:0}}
 .tile.buzz{animation:buzz .45s steps(1,end)}
 @keyframes buzz{0%{filter:brightness(1)}18%{filter:brightness(.8)}28%{filter:brightness(1.03)}52%{filter:brightness(.88)}62%{filter:brightness(1)}}
-@media (prefers-reduced-motion: reduce){.tube,.tile.buzz{animation:none !important;opacity:0}}
+@media (prefers-reduced-motion: reduce){.tile.buzz{animation:none !important}}
 
 /* institution logos as faint watermarks */
 .xp li.has-logo{position:relative;overflow:hidden;isolation:isolate}
 .xp li.has-logo::after{content:"";position:absolute;z-index:-1;left:auto;bottom:auto;right:-48px;top:50%;width:240px;height:240px;transform:translateY(-50%);background:currentColor;color:var(--ink);opacity:var(--wm,.11);-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat;transition:opacity .6s ease,transform 1.2s cubic-bezier(.2,.8,.2,1)}
 .xp li.has-logo:hover::after,.xp li.has-logo:focus-within::after{opacity:.2;transform:translateY(-50%) translateX(-6px) scale(1.04)}
 @media (max-width:720px){.xp li.has-logo::after{width:42%;height:110px;right:12px;top:auto;bottom:10px;transform:none}}
-/* ambient reading-room backdrop */
-body{position:relative}
-:root{--ring:rgba(60,90,120,.12)}
-:root[data-theme="dark"]{--ring:rgba(230,237,243,.07)}
-.ambient{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.ambient::before{content:"";position:absolute;inset:-300px 0 0 -300px;background:linear-gradient(135deg,#1fb5a4,#3b82c4 45%,#7c5cc4);opacity:var(--doodle-o,.24);-webkit-mask:url(assets/doodles.svg) 0 0/300px 300px repeat;mask:url(assets/doodles.svg) 0 0/300px 300px repeat}
-:root[data-theme="dark"]{--doodle-o:.36}
-.ambient .glow{position:absolute;width:70vmax;height:70vmax;left:50%;top:40%;margin:-35vmax 0 0 -35vmax;border-radius:50%;background:radial-gradient(closest-side,var(--glow-2),transparent);opacity:.9}
-.ambient .ring{position:absolute;top:50%;width:min(46vw,760px);aspect-ratio:1;border-radius:50%;margin-top:calc(min(46vw,760px) / -2);
-  background:repeating-radial-gradient(circle,transparent 0 38px,var(--ring) 38px 39px);-webkit-mask:radial-gradient(circle,#000 55%,transparent 71%);mask:radial-gradient(circle,#000 55%,transparent 71%)}
-.ambient .ring::after{content:"";position:absolute;inset:8%;border-radius:50%;border:1px dashed var(--ring)}
-.ambient .r1{left:calc(min(46vw,760px) / -2)}
-.ambient .r2{right:calc(min(46vw,760px) / -2)}
-.ambient .sweep{position:absolute;left:0;right:0;top:-12vh;height:12vh;background:linear-gradient(transparent,var(--glow-2) 70%,transparent);opacity:0}
-@media (prefers-reduced-motion: no-preference){
-  .ambient .glow{animation:drift 38s ease-in-out infinite alternate}
-  .ambient::before{animation:pan 160s linear infinite;will-change:transform}
-  @keyframes pan{to{transform:translate(300px,300px)}}
-  .ambient .ring{animation:spin 160s linear infinite}
-  .ambient .r2{animation-direction:reverse}
-  .ambient .sweep{animation:sweep 12s cubic-bezier(.4,0,.2,1) infinite}
-  @keyframes drift{from{transform:translate(-14vw,-6vh)}to{transform:translate(14vw,8vh)}}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  @keyframes sweep{0%,72%{transform:translateY(0);opacity:0}76%{opacity:.9}100%{transform:translateY(124vh);opacity:0}}
-}
 
 /* phones: single-column project cards (must stay last) */
 @media (max-width:720px){
@@ -717,9 +684,9 @@ body{position:relative}
   .work .w-ich > .txt,.work .w-ti > .txt{display:flex;flex-direction:column;gap:12px}
 }
 </style>
+<link rel="stylesheet" href="assets/craft.css?v=1791582804">
 </head>
 <body>
-<div class="ambient" aria-hidden="true"><div class="glow"></div><div class="sweep"></div></div>
 <div class="boot" aria-hidden="true"><p id="boot-n">Acquiring · Im 0/40</p><span class="bar"><i id="boot-bar"></i></span></div>
 <a class="skip" href="#main">Skip to content</a>
 
@@ -743,13 +710,13 @@ body{position:relative}
 <main id="main">
   <!-- ================= BENTO ================= -->
   <div class="wrap hero">
-    <div class="bento">
+    <div class="bento hero-b">
 
       <section class="tile t-intro live" style="--i:0" aria-labelledby="name">
-        <svg class="orbit" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#A9B8C6" stroke-width=".6"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="76"/><circle cx="100" cy="100" r="56"/><circle cx="100" cy="100" r="36"/></g></svg>
+        <span class="scout-home" aria-hidden="true"></span>
         <p class="tag mono"><span class="dot" aria-hidden="true"></span>Radiology resident · Clinical AI</p>
         <div>
-          <h1 id="name">Syed Mohammad <span>Hasan, MBBS</span></h1>
+          <h1 id="name">Syed Mohammad <span><em class="ac">Hasan</em>, MBBS</span></h1>
           <p class="lede">A radiologist in training who works on both sides of imaging AI: reading the scans, and testing the models that read them.</p>
           <p class="role">Resident, Diagnostic Radiology · Aga Khan University Hospital, Karachi</p>
           <div class="actions">
@@ -760,7 +727,7 @@ body{position:relative}
       </section>
 
       <div class="tile t-photo live" style="--i:1">
-        <div class="ring"><img src="assets/headshot.jpg" width="276" height="276" alt="Portrait of Syed Mohammad Hasan"></div>
+        <span class="pov" aria-hidden="true">Portrait</span><div class="ring"><img src="assets/portrait-800.jpg" srcset="assets/portrait-800.jpg 800w, assets/portrait-1200.jpg 1200w" sizes="(max-width:720px) 100vw, 34vw" width="1200" height="1500" alt="Portrait of Syed Mohammad Hasan"></div>
         <p class="cap">Karachi, Pakistan<span>GMC &amp; PMDC registered</span></p>
       </div>
 
@@ -769,6 +736,7 @@ body{position:relative}
         <span class="corner" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         <h2>Deep learning for intracranial haemorrhage on head CT</h2>
         <p>Single-centre evaluation · ongoing</p>
+        <ol class="steps" aria-label="Study progress"><li class="done">Internal audit of the first analysis</li><li class="done">Restarted: model integrity checks, one prespecified endpoint</li><li>Two-reader neuroradiology reference<span> · planned</span></li></ol>
         <a class="cover" href="#p-ich" aria-label="Currently: deep learning for intracranial haemorrhage on head CT. Read more"></a>
       </article>
 
@@ -828,33 +796,15 @@ body{position:relative}
         <a class="cover" href="#publications" aria-label="Five publications. See the full list"></a>
       </article>
 
-      <article class="tile t-awards live" style="--i:6">
-        <p class="tag mono">Recognition</p>
-        <ul>
-          <li><b>2026</b>Elected Resident, Department of Radiology, AKUH</li>
-          <li><b>2024</b>First Prize, AKU PGME Annual Conference</li>
-          <li><b>2022</b>Best Intern Award, Civil Hospital Karachi</li>
-        </ul>
-      </article>
-
-      <nav class="tile t-links live" style="--i:7" aria-label="Profiles">
-        <p class="tag mono">Elsewhere</p>
-        <ul>
-          <li><a href="https://www.linkedin.com/in/syed-mohammad-h-a5a453b0/" target="_blank" rel="me noopener">LinkedIn<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
-          <li><a href="https://orcid.org/0000-0003-0324-5081" target="_blank" rel="me noopener">ORCID<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
-          <li><a href="https://github.com/smhasan-yad" target="_blank" rel="me noopener">GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
-        </ul>
-      </nav>
-
     </div>
   </div>
 
   <!-- ================= ABOUT ================= -->
   <section class="block wrap" id="about" aria-labelledby="h-about">
+    <p class="kicker mono"><i style="--c:var(--lilac)" aria-hidden="true"></i>01 / About<span>Clinical · AI · Evidence</span></p>
     <div class="shead">
       <div>
-        <p class="kicker mono"><i style="--c:var(--lilac)" aria-hidden="true"></i>01 · About</p>
-        <h2 id="h-about">Two sides of imaging AI</h2>
+        <h2 id="h-about">Two sides of <em class="ac">imaging AI</em></h2>
       </div>
     </div>
     <div class="about">
@@ -883,10 +833,10 @@ body{position:relative}
 
   <!-- ================= WORK ================= -->
   <section class="block wrap" id="work" aria-labelledby="h-work">
+    <p class="kicker mono"><i style="--c:var(--tomato)" aria-hidden="true"></i>02 / Work<span>Research · QI · Tools</span></p>
     <div class="shead">
       <div>
-        <p class="kicker mono"><i style="--c:var(--tomato)" aria-hidden="true"></i>02 · Work</p>
-        <h2 id="h-work">Selected projects</h2>
+        <h2 id="h-work">Selected <em class="ac">projects</em></h2>
       </div>
       <p class="side">Research, quality improvement and tools. Images in this section are synthetic phantoms, not patient scans.</p>
     </div>
@@ -952,10 +902,10 @@ body{position:relative}
 
   <!-- ================= EXPERIENCE ================= -->
   <section class="block wrap" id="experience" aria-labelledby="h-xp">
+    <p class="kicker mono"><i style="--c:var(--sky)" aria-hidden="true"></i>03 / Experience<span>2022 – present</span></p>
     <div class="shead">
       <div>
-        <p class="kicker mono"><i style="--c:var(--sky)" aria-hidden="true"></i>03 · Experience</p>
-        <h2 id="h-xp">Where I have worked</h2>
+        <h2 id="h-xp">Where I have <em class="ac">worked</em></h2>
       </div>
     </div>
     <ol class="xp">
@@ -1004,10 +954,10 @@ body{position:relative}
 
   <!-- ================= PUBLICATIONS ================= -->
   <section class="block wrap" id="publications" aria-labelledby="h-pub">
+    <p class="kicker mono"><i style="--c:var(--butter)" aria-hidden="true"></i>04 / Publications<span>Full record on ORCID</span></p>
     <div class="shead">
       <div>
-        <p class="kicker mono"><i style="--c:var(--butter)" aria-hidden="true"></i>04 · Publications</p>
-        <h2 id="h-pub">Published work</h2>
+        <h2 id="h-pub">Published <em class="ac">work</em></h2>
       </div>
     </div>
     <div class="pubs-wrap">
@@ -1039,10 +989,10 @@ body{position:relative}
 
   <!-- ================= CREDENTIALS ================= -->
   <section class="block wrap" id="credentials" aria-labelledby="h-cred">
+    <p class="kicker mono"><i style="--c:var(--mint)" aria-hidden="true"></i>05 / Credentials<span>UK · Pakistan</span></p>
     <div class="shead">
       <div>
-        <p class="kicker mono"><i style="--c:var(--mint)" aria-hidden="true"></i>05 · Credentials</p>
-        <h2 id="h-cred">Registration and recognition</h2>
+        <h2 id="h-cred">Registration and <em class="ac">recognition</em></h2>
       </div>
     </div>
     <div class="creds">
@@ -1066,10 +1016,9 @@ body{position:relative}
   <!-- ================= CONTACT ================= -->
   <div class="wrap">
     <section class="contact" id="contact" aria-labelledby="h-contact">
-      <svg class="orbit" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#A9B8C6" stroke-width=".5"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="76"/><circle cx="100" cy="100" r="56"/><circle cx="100" cy="100" r="36"/></g></svg>
       <div>
-        <p class="mono" style="margin-bottom:18px">06 · Contact</p>
-        <h2 id="h-contact">Let’s talk.</h2>
+        <p class="mono" style="margin-bottom:18px">06 / Contact</p>
+        <h2 id="h-contact">Let’s <span class="nw"><em class="ac">talk.</em><span class="scout-talk" aria-hidden="true"></span></span></h2>
         <p class="sub">Roles, research collaboration or fellowships.</p>
       </div>
       <div class="actions">
@@ -1189,7 +1138,7 @@ body{position:relative}
     }
     root.setAttribute('data-theme', t);
     lights.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
-    if (themeMeta) themeMeta.setAttribute('content', t === 'dark' ? '#0b0f13' : '#F3F7FA');
+    if (themeMeta) themeMeta.setAttribute('content', t === 'dark' ? '#121316' : '#F2F1EE');
   }
   setTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
   lights.addEventListener('click', function(){
@@ -1609,5 +1558,7 @@ body{position:relative}
   }
 })();
 </script>
+<script src="assets/scout.js?v=1791582856" defer></script>
+<script src="assets/craft.js?v=1791582804" defer></script>
 </body>
 </html>
